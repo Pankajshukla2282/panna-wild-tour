@@ -1,0 +1,13 @@
+class Destination extends PostType
+{
+    protected string $postType='pwt_destination';
+
+    protected string $singular='Destination';
+
+    protected string $plural='Destinations';
+
+    protected function menuIcon(): string
+    {
+        return 'dashicons-location';
+    }
+}

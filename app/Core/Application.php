@@ -1,0 +1,46 @@
+<?php
+
+namespace PWT\Core;
+
+defined('ABSPATH') || exit;
+
+use PWT\Admin\AdminServiceProvider;
+use PWT\PostTypes\PostTypeServiceProvider;
+use PWT\Taxonomies\TaxonomyServiceProvider;
+
+class Application
+{
+    protected Container $container;
+
+    public function __construct()
+    {
+        $this->container = new Container();
+    }
+
+    public function boot(): void
+    {
+        add_action('plugins_loaded', [$this, 'init']);
+    }
+
+    public function init(): void
+    {
+        load_plugin_textdomain(
+            'panna-wild-tour',
+            false,
+            dirname(plugin_basename(PWT_PLUGIN_FILE)) . '/languages'
+        );
+
+        $this->registerProviders();
+
+        $this->container->boot();
+    }
+
+    protected function registerProviders(): void
+    {
+        $this->container->register(AdminServiceProvider::class);
+
+        $this->container->register(PostTypeServiceProvider::class);
+
+        $this->container->register(TaxonomyServiceProvider::class);
+    }
+}
