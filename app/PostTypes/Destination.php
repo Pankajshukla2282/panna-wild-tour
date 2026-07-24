@@ -1,3 +1,9 @@
+<?php
+
+namespace PWT\PostTypes;
+
+defined('ABSPATH') || exit;
+
 class Destination extends PostType
 {
     protected string $postType='pwt_destination';

@@ -1,3 +1,9 @@
+<?php
+
+namespace PWT\PostTypes;
+
+defined('ABSPATH') || exit;
+
 class Resort extends PostType
 {
     protected string $postType='pwt_resort';

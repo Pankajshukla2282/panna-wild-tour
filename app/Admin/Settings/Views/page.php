@@ -1,3 +1,7 @@
+<?php
+
+defined('ABSPATH') || exit;
+
 $page = new Page(
     'pwt_settings_group',
     'pwt_settings',
