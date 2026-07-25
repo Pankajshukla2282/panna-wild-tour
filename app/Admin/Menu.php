@@ -40,6 +40,15 @@ class Menu
             'pwt-settings',
             [$this, 'settings']
         );
+
+        add_submenu_page(
+            'pwt-dashboard',
+            __('Content Forms', 'panna-wild-tour'),
+            __('Content Forms', 'panna-wild-tour'),
+            'manage_options',
+            'pwt-content-forms',
+            [$this, 'contentForms']
+        );
     }
 
     public function dashboard(): void
@@ -50,5 +59,10 @@ class Menu
     public function settings(): void
     {
         include PWT_PLUGIN_PATH . 'app/Admin/Views/settings.php';
+    }
+
+    public function contentForms(): void
+    {
+        include PWT_PLUGIN_PATH . 'app/Admin/Views/content-forms.php';
     }
 }

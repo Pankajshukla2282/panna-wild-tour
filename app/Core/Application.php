@@ -8,6 +8,7 @@ use PWT\Admin\AdminServiceProvider;
 use PWT\API\ApiServiceProvider;
 use PWT\Analytics\AnalyticsServiceProvider;
 use PWT\Frontend\FrontendServiceProvider;
+use PWT\Integrations\IntegrationServiceProvider;
 use PWT\PostTypes\PostTypeServiceProvider;
 use PWT\Taxonomies\TaxonomyServiceProvider;
 use PWT\SCF\SCFServiceProvider;
@@ -57,5 +58,7 @@ class Application
         $this->container->register(WidgetServiceProvider::class);
 
         $this->container->register(AnalyticsServiceProvider::class);
+
+        $this->container->register(IntegrationServiceProvider::class);
     }
 }

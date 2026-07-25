@@ -50,11 +50,23 @@ class Shortcodes
 
     public function packages(): string
     {
-        $query = new \WP_Query([
+        $settings = get_option('pwt_settings', []);
+        $featuredRaw = (string) ($settings['featured_package_ids'] ?? '');
+        $featuredIds = array_values(array_filter(array_map('absint', array_map('trim', explode(',', $featuredRaw)))));
+
+        $args = [
             'post_type' => 'pwt_package',
             'post_status' => 'publish',
             'posts_per_page' => 6,
-        ]);
+        ];
+
+        if (!empty($featuredIds)) {
+            $args['post__in'] = $featuredIds;
+            $args['orderby'] = 'post__in';
+            $args['posts_per_page'] = max(6, count($featuredIds));
+        }
+
+        $query = new \WP_Query($args);
 
         return $this->renderCardsSection(
             __('Featured Packages', 'panna-wild-tour'),

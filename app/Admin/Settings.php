@@ -128,6 +128,18 @@ class Settings
         );
 
         add_settings_field(
+            'featured_package_ids',
+            __('Featured Package IDs (comma separated)', 'panna-wild-tour'),
+            [$this, 'renderTextField'],
+            'pwt-settings',
+            'pwt_general',
+            [
+                'key' => 'featured_package_ids',
+                'placeholder' => __('660,668,675', 'panna-wild-tour')
+            ]
+        );
+
+        add_settings_field(
             'payment_page_url',
             __('Payment Page URL', 'panna-wild-tour'),
             [$this, 'renderTextField'],
@@ -288,6 +300,7 @@ class Settings
         $sanitized['booking_email'] = sanitize_email($input['booking_email'] ?? '');
         $sanitized['hero_title'] = sanitize_text_field($input['hero_title'] ?? '');
         $sanitized['hero_subtitle'] = sanitize_textarea_field($input['hero_subtitle'] ?? '');
+        $sanitized['featured_package_ids'] = sanitize_text_field($input['featured_package_ids'] ?? '');
         $sanitized['payment_page_url'] = esc_url_raw($input['payment_page_url'] ?? '');
         $sanitized['payment_upi_id'] = sanitize_text_field($input['payment_upi_id'] ?? '');
         $sanitized['payment_gateway'] = sanitize_key($input['payment_gateway'] ?? 'manual');
