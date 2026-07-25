@@ -145,6 +145,12 @@ class BookingManager
 		}
 
 		$status = sanitize_text_field($_POST['pwt_payment_status'] ?? 'pending_payment');
+		$current = (string) get_post_meta($postId, '_pwt_payment_status', true);
+
+		if (!\PWT\Payments\PaymentManager::canTransitionStatus($current, $status)) {
+			return;
+		}
+
 		update_post_meta($postId, '_pwt_payment_status', $status);
 	}
 }

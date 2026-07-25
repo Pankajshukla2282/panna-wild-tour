@@ -22,6 +22,8 @@ class PostTypeServiceProvider extends ServiceProvider
 
             new Testimonial(),
 
+            new Review(),
+
             new FAQ(),
 
             new Gallery()

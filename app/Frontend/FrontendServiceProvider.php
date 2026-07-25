@@ -13,6 +13,7 @@ class FrontendServiceProvider extends ServiceProvider
         require_once PWT_PLUGIN_PATH . 'bookings/booking-manager.php';
         require_once PWT_PLUGIN_PATH . 'bookings/ajax-booking.php';
         require_once PWT_PLUGIN_PATH . 'bookings/booking-form.php';
+        require_once PWT_PLUGIN_PATH . 'bookings/email-notifications.php';
 
         (new \PWT\Bookings\BookingManager())->register();
         (new \PWT\Bookings\AjaxBooking())->register();
@@ -24,6 +25,7 @@ class FrontendServiceProvider extends ServiceProvider
             (new TemplateLoader())->register();
             (new Seo())->register();
             (new ArchiveFilters())->register();
+            (new AvailabilityCalendar())->register();
         }
     }
 }

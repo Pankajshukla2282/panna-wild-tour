@@ -51,6 +51,12 @@ class AjaxBooking
 			], 422);
 		}
 
+		if ($packageId && !\PWT\Frontend\AvailabilityCalendar::isDateAvailable($packageId, $travelDate)) {
+			wp_send_json_error([
+				'message' => __('Selected date is unavailable for this package.', 'panna-wild-tour')
+			], 409);
+		}
+
 		$bookingId = wp_insert_post([
 			'post_type' => 'pwt_booking',
 			'post_status' => 'publish',
@@ -94,34 +100,20 @@ class AjaxBooking
 
 		$packageName = $packageId ? get_the_title($packageId) : __('Not selected', 'panna-wild-tour');
 
-		$subject = sprintf(
-			/* translators: %s: customer name */
-			__('New Booking Request from %s', 'panna-wild-tour'),
-			$name
-		);
+		$subject = \PWT\Bookings\EmailTemplates::bookingAdminSubject($name);
+		$body = \PWT\Bookings\EmailTemplates::bookingAdminBody([
+			'name' => $name,
+			'phone' => $phone,
+			'email' => $email,
+			'travel_date' => $travelDate,
+			'persons' => $persons,
+			'package_name' => $packageName,
+			'message' => $message,
+			'estimated_total' => $estimate['formatted_total'] ?? '',
+			'payment_link' => $payment['payment_url'] ?? '',
+		]);
 
-		$body = [
-			__('A new booking request has been submitted.', 'panna-wild-tour'),
-			'',
-			__('Name', 'panna-wild-tour') . ': ' . $name,
-			__('Phone', 'panna-wild-tour') . ': ' . $phone,
-			__('Email', 'panna-wild-tour') . ': ' . $email,
-			__('Travel Date', 'panna-wild-tour') . ': ' . $travelDate,
-			__('Persons', 'panna-wild-tour') . ': ' . $persons,
-			__('Package', 'panna-wild-tour') . ': ' . $packageName,
-			__('Message', 'panna-wild-tour') . ': ' . $message,
-		];
-
-		if (!empty($estimate['formatted_total'])) {
-			$body[] = __('Estimated Total', 'panna-wild-tour') . ': ' . $estimate['formatted_total'];
-			$body[] = __('Season', 'panna-wild-tour') . ': ' . ($estimate['season_label'] ?? '');
-		}
-
-		if (!empty($payment['payment_url'])) {
-			$body[] = __('Payment Link', 'panna-wild-tour') . ': ' . $payment['payment_url'];
-		}
-
-		wp_mail($recipient, $subject, implode("\n", $body));
+		wp_mail($recipient, $subject, $body);
 
 		wp_send_json_success([
 			'message' => __('Thank you. Our team will contact you shortly.', 'panna-wild-tour'),

@@ -35,6 +35,8 @@ class SCFServiceProvider extends ServiceProvider
 
         (new Groups\TestimonialFields())->register();
 
+        (new Groups\ReviewFields())->register();
+
         (new Groups\FAQFields())->register();
     }
 }

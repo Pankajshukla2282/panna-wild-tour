@@ -14,6 +14,7 @@ class Shortcodes
         add_shortcode('pwt_destinations', [$this, 'destinations']);
         add_shortcode('pwt_testimonials', [$this, 'testimonials']);
         add_shortcode('pwt_faq', [$this, 'faqs']);
+        add_shortcode('pwt_reviews', [$this, 'reviews']);
         add_shortcode('pwt_contact_card', [$this, 'contactCard']);
         add_shortcode('pwt_booking_form', [$this, 'bookingForm']);
         add_shortcode('pwt_payment_page', [$this, 'paymentPage']);
@@ -30,7 +31,9 @@ class Shortcodes
             <?php echo $this->safaris(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <?php echo $this->destinations(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <?php echo $this->testimonials(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?php echo $this->reviews(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <?php echo $this->faqs(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?php echo do_shortcode('[pwt_availability_calendar]'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <section class="pwt-section pwt-grid-two">
                 <div>
                     <?php echo $this->contactCard(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -175,6 +178,40 @@ class Shortcodes
         return ob_get_clean();
     }
 
+    public function reviews(): string
+    {
+        $query = new \WP_Query([
+            'post_type' => 'pwt_review',
+            'post_status' => 'publish',
+            'posts_per_page' => 6,
+        ]);
+
+        ob_start();
+        ?>
+        <section class="pwt-section">
+            <header class="pwt-section-header">
+                <h2><?php esc_html_e('Verified Reviews', 'panna-wild-tour'); ?></h2>
+                <p><?php esc_html_e('Recent guest reviews from completed tours.', 'panna-wild-tour'); ?></p>
+            </header>
+            <div class="pwt-testimonials">
+                <?php if ($query->have_posts()) : ?>
+                    <?php while ($query->have_posts()) : $query->the_post(); ?>
+                        <article class="pwt-testimonial-card">
+                            <p class="pwt-quote">"<?php echo esc_html(wp_trim_words(get_the_excerpt() ?: get_the_content(null, false), 35)); ?>"</p>
+                            <h3><?php echo esc_html(get_the_title()); ?></h3>
+                        </article>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                <?php else : ?>
+                    <p><?php esc_html_e('Add reviews to strengthen trust and conversion.', 'panna-wild-tour'); ?></p>
+                <?php endif; ?>
+            </div>
+        </section>
+        <?php
+
+        return ob_get_clean();
+    }
+
     public function contactCard(): string
     {
         $settings = get_option('pwt_settings', []);
@@ -232,6 +269,14 @@ class Shortcodes
             return '<section class="pwt-section"><p>' . esc_html__('Payment request not found.', 'panna-wild-tour') . '</p></section>';
         }
 
+        $methodLabels = [
+            'upi' => __('UPI', 'panna-wild-tour'),
+            'bank_transfer' => __('Bank Transfer', 'panna-wild-tour'),
+            'cash' => __('Cash', 'panna-wild-tour'),
+            'card' => __('Card', 'panna-wild-tour'),
+            'net_banking' => __('Net Banking', 'panna-wild-tour'),
+        ];
+
         ob_start();
         ?>
         <section class="pwt-section pwt-payment-portal">
@@ -267,9 +312,9 @@ class Shortcodes
                         <label>
                             <span><?php esc_html_e('Payment Method', 'panna-wild-tour'); ?></span>
                             <select name="payment_method">
-                                <option value="upi"><?php esc_html_e('UPI', 'panna-wild-tour'); ?></option>
-                                <option value="bank_transfer"><?php esc_html_e('Bank Transfer', 'panna-wild-tour'); ?></option>
-                                <option value="cash"><?php esc_html_e('Cash', 'panna-wild-tour'); ?></option>
+                                <?php foreach (($context['allowed_methods'] ?? ['upi', 'bank_transfer', 'cash']) as $methodSlug) : ?>
+                                    <option value="<?php echo esc_attr((string) $methodSlug); ?>"><?php echo esc_html($methodLabels[$methodSlug] ?? ucfirst((string) $methodSlug)); ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </label>
                         <label>

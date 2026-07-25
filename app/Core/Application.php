@@ -5,10 +5,13 @@ namespace PWT\Core;
 defined('ABSPATH') || exit;
 
 use PWT\Admin\AdminServiceProvider;
+use PWT\API\ApiServiceProvider;
+use PWT\Analytics\AnalyticsServiceProvider;
 use PWT\Frontend\FrontendServiceProvider;
 use PWT\PostTypes\PostTypeServiceProvider;
 use PWT\Taxonomies\TaxonomyServiceProvider;
 use PWT\SCF\SCFServiceProvider;
+use PWT\Widgets\WidgetServiceProvider;
 
 class Application
 {
@@ -48,5 +51,11 @@ class Application
         $this->container->register(SCFServiceProvider::class);
 
         $this->container->register(FrontendServiceProvider::class);
+
+        $this->container->register(ApiServiceProvider::class);
+
+        $this->container->register(WidgetServiceProvider::class);
+
+        $this->container->register(AnalyticsServiceProvider::class);
     }
 }

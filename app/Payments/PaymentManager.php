@@ -2,6 +2,8 @@
 
 namespace PWT\Payments;
 
+use PWT\Payments\Gateways\GatewayFactory;
+
 defined('ABSPATH') || exit;
 
 class PaymentManager
@@ -15,19 +17,24 @@ class PaymentManager
     {
         $settings = get_option('pwt_settings', []);
         $advancePercent = max(1, min(100, (int) ($settings['payment_advance_percent'] ?? 30)));
-        $advanceAmount = round(($estimatedTotal * $advancePercent) / 100, 2);
-        $token = wp_generate_password(24, false, false);
+        $gateway = GatewayFactory::fromSettings($settings);
+        $intent = $gateway->createIntent($bookingId, $estimatedTotal, $advancePercent);
+
+        $token = (string) ($intent['token'] ?? wp_generate_password(24, false, false));
+        $advanceAmount = (float) ($intent['advance_amount'] ?? round(($estimatedTotal * $advancePercent) / 100, 2));
+        $paymentUrl = (string) ($intent['payment_url'] ?? '');
 
         update_post_meta($bookingId, '_pwt_payment_token', $token);
         update_post_meta($bookingId, '_pwt_payment_status', 'pending_payment');
         update_post_meta($bookingId, '_pwt_payment_advance_percent', $advancePercent);
         update_post_meta($bookingId, '_pwt_payment_due_amount', $advanceAmount);
         update_post_meta($bookingId, '_pwt_payment_total_amount', $estimatedTotal);
+        update_post_meta($bookingId, '_pwt_payment_gateway', $gateway->slug());
 
         return [
             'token' => $token,
             'advance_amount' => $advanceAmount,
-            'payment_url' => self::paymentUrl($token),
+            'payment_url' => $paymentUrl !== '' ? $paymentUrl : self::paymentUrl($token),
         ];
     }
 
@@ -80,8 +87,10 @@ class PaymentManager
             'total_amount' => (float) get_post_meta($bookingId, '_pwt_payment_total_amount', true),
             'payment_reference' => (string) get_post_meta($bookingId, '_pwt_payment_reference', true),
             'payment_method' => (string) get_post_meta($bookingId, '_pwt_payment_method', true),
+            'gateway' => (string) get_post_meta($bookingId, '_pwt_payment_gateway', true),
             'upi_id' => (string) ($settings['payment_upi_id'] ?? ''),
             'instructions' => (string) ($settings['payment_instructions'] ?? ''),
+            'allowed_methods' => self::allowedPaymentMethods($settings),
         ];
     }
 
@@ -100,10 +109,18 @@ class PaymentManager
 
         check_admin_referer('pwt_payment_portal_' . $bookingId);
 
+        $currentStatus = (string) get_post_meta($bookingId, '_pwt_payment_status', true);
+        if (!self::canTransitionStatus($currentStatus, 'verification_pending')) {
+            wp_safe_redirect(add_query_arg('payment_error', '1', wp_get_referer() ?: home_url('/')));
+            exit;
+        }
+
         $reference = sanitize_text_field($_POST['payment_reference'] ?? '');
         $method = sanitize_text_field($_POST['payment_method'] ?? 'upi');
+        $settings = get_option('pwt_settings', []);
+        $allowedMethods = self::allowedPaymentMethods($settings);
 
-        if ($reference === '') {
+        if ($reference === '' || !in_array($method, $allowedMethods, true)) {
             wp_safe_redirect(add_query_arg('payment_error', '1', wp_get_referer() ?: home_url('/')));
             exit;
         }
@@ -129,5 +146,39 @@ class PaymentManager
         ];
 
         return $labels[$status] ?? __('Pending Payment', 'panna-wild-tour');
+    }
+
+    public static function canTransitionStatus(string $from, string $to): bool
+    {
+        $map = [
+            'pending_payment' => ['verification_pending', 'failed', 'cancelled'],
+            'verification_pending' => ['partial_paid', 'paid', 'failed', 'cancelled'],
+            'partial_paid' => ['paid', 'failed', 'cancelled'],
+            'paid' => [],
+            'failed' => ['pending_payment', 'verification_pending', 'cancelled'],
+            'cancelled' => [],
+        ];
+
+        if ($from === '') {
+            return true;
+        }
+
+        return in_array($to, $map[$from] ?? [], true) || $from === $to;
+    }
+
+    public static function allowedPaymentMethods(array $settings = []): array
+    {
+        if (empty($settings)) {
+            $settings = get_option('pwt_settings', []);
+        }
+
+        $raw = (string) ($settings['payment_methods'] ?? 'upi,bank_transfer,cash');
+        $methods = array_filter(array_map('sanitize_key', array_map('trim', explode(',', $raw))));
+
+        if (empty($methods)) {
+            return ['upi', 'bank_transfer', 'cash'];
+        }
+
+        return array_values(array_unique($methods));
     }
 }
