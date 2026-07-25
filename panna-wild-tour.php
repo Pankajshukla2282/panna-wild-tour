@@ -43,6 +43,7 @@ $app = new PWT\Core\Application();
 $app->boot();
 
 
+
 register_activation_hook(
     __FILE__,
     ['PWT\Core\Activator', 'activate']
