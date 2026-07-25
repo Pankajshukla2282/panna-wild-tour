@@ -5,8 +5,10 @@ namespace PWT\Core;
 defined('ABSPATH') || exit;
 
 use PWT\Admin\AdminServiceProvider;
+use PWT\Frontend\FrontendServiceProvider;
 use PWT\PostTypes\PostTypeServiceProvider;
 use PWT\Taxonomies\TaxonomyServiceProvider;
+use PWT\SCF\SCFServiceProvider;
 
 class Application
 {
@@ -42,5 +44,9 @@ class Application
         $this->container->register(PostTypeServiceProvider::class);
 
         $this->container->register(TaxonomyServiceProvider::class);
+
+        $this->container->register(SCFServiceProvider::class);
+
+        $this->container->register(FrontendServiceProvider::class);
     }
 }

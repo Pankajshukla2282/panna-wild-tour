@@ -1,0 +1,335 @@
+:root {
+    --pwt-forest: #123524;
+    --pwt-moss: #3e7b4f;
+    --pwt-sand: #f7f1de;
+    --pwt-gold: #d7a547;
+    --pwt-ink: #1f1f1f;
+    --pwt-card: #fffdf7;
+    --pwt-shadow: 0 18px 40px rgba(18, 53, 36, 0.14);
+}
+
+.pwt-site {
+    color: var(--pwt-ink);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.pwt-hero {
+    background: radial-gradient(circle at 15% 20%, rgba(215, 165, 71, 0.34), transparent 40%),
+        linear-gradient(135deg, #0d2217, #1d4f37 40%, #307253);
+    color: #fff;
+    border-radius: 24px;
+    padding: 72px 24px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pwt-hero::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    right: -80px;
+    top: -80px;
+}
+
+.pwt-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.pwt-kicker {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+.pwt-hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    margin: 8px 0 10px;
+    line-height: 1.08;
+}
+
+.pwt-hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin: 0 auto 24px;
+    max-width: 700px;
+}
+
+.pwt-section {
+    background: var(--pwt-card);
+    border-radius: 18px;
+    border: 1px solid rgba(18, 53, 36, 0.1);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--pwt-shadow);
+}
+
+.pwt-section-header h2 {
+    margin: 0;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--pwt-forest);
+}
+
+.pwt-section-header p {
+    margin: 8px 0 0;
+    color: #3f4d46;
+}
+
+.pwt-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.pwt-card {
+    border: 1px solid rgba(18, 53, 36, 0.11);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pwt-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pwt-card-image img {
+    display: block;
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+}
+
+.pwt-card-body {
+    padding: 14px;
+}
+
+.pwt-card-body h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--pwt-forest);
+}
+
+.pwt-tag {
+    display: inline-block;
+    margin: 8px 0;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 0.77rem;
+    background: rgba(62, 123, 79, 0.13);
+    color: #205133;
+}
+
+.pwt-testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.pwt-testimonial-card {
+    background: #fff;
+    border-left: 4px solid var(--pwt-gold);
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.pwt-quote {
+    margin-top: 0;
+    font-style: italic;
+}
+
+.pwt-faq-item {
+    border: 1px solid rgba(18, 53, 36, 0.13);
+    border-radius: 10px;
+    background: #fff;
+    padding: 10px 12px;
+    margin-top: 10px;
+}
+
+.pwt-faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--pwt-forest);
+}
+
+.pwt-contact-list {
+    margin: 14px 0;
+    padding-left: 16px;
+}
+
+.pwt-contact-list li {
+    margin-bottom: 6px;
+}
+
+.pwt-grid-two {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.pwt-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.pwt-form-grid label span {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.pwt-form-grid input,
+.pwt-form-grid select,
+.pwt-form-grid textarea {
+    width: 100%;
+    border: 1px solid rgba(18, 53, 36, 0.26);
+    border-radius: 9px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+}
+
+.pwt-btn {
+    display: inline-block;
+    background: linear-gradient(140deg, var(--pwt-gold), #e2be73);
+    color: #1f1807;
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 18px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pwt-btn:hover {
+    filter: brightness(0.96);
+}
+
+.pwt-text-link {
+    color: var(--pwt-moss);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.pwt-text-link:hover {
+    text-decoration: underline;
+}
+
+.pwt-form-message {
+    margin-top: 10px;
+    margin-bottom: 0;
+    min-height: 1.2em;
+}
+
+.pwt-estimate {
+    margin-top: 12px;
+    margin-bottom: 0;
+    font-weight: 700;
+    color: var(--pwt-forest);
+}
+
+.pwt-single-wrap {
+    max-width: 1080px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+.pwt-single-hero {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f4efe0;
+    margin-bottom: 20px;
+}
+
+.pwt-single-hero img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+}
+
+.pwt-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+
+.pwt-meta-chip {
+    background: #fff;
+    border: 1px solid rgba(18, 53, 36, 0.16);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.pwt-filter-bar {
+    margin-top: 18px;
+}
+
+.pwt-itinerary-list {
+    display: grid;
+    gap: 16px;
+}
+
+.pwt-itinerary-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    border: 1px solid rgba(18, 53, 36, 0.12);
+    border-radius: 14px;
+    background: #fff;
+    padding: 16px;
+}
+
+.pwt-itinerary-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.pwt-payment-portal {
+    max-width: 820px;
+    margin: 0 auto 24px;
+}
+
+.pwt-form-message.is-success {
+    color: #1f6f31;
+}
+
+.pwt-form-message.is-error {
+    color: #a12424;
+}
+
+@media (min-width: 768px) {
+    .pwt-grid-two {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pwt-form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pwt-full-width {
+        grid-column: 1 / -1;
+    }
+
+    .pwt-itinerary-item {
+        grid-template-columns: 1.6fr 1fr;
+        align-items: start;
+    }
+}
