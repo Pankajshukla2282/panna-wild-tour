@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PWT\Frontend;
 
 defined('ABSPATH') || exit;
 
-class Assets
+final class Assets
 {
     public function register(): void
     {
@@ -14,31 +16,26 @@ class Assets
     public function enqueue(): void
     {
         wp_enqueue_style(
-            'pwt-frontend',
+            'pwt-plugin',
             PWT_PLUGIN_URL . 'assets/css/frontend.css',
             [],
             PWT_VERSION
         );
 
         wp_enqueue_script(
-            'pwt-frontend',
+            'pwt-plugin',
             PWT_PLUGIN_URL . 'assets/js/frontend.js',
-            [],
+            ['jquery'],
             PWT_VERSION,
             true
         );
 
         wp_localize_script(
-            'pwt-frontend',
-            'pwtFrontend',
+            'pwt-plugin',
+            'pwtData',
             [
                 'ajaxUrl' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('pwt_booking_nonce'),
-                'messages' => [
-                    'submitting' => __('Submitting your request...', 'panna-wild-tour'),
-                    'success' => __('Booking request submitted successfully.', 'panna-wild-tour'),
-                    'error' => __('Unable to submit right now. Please try again.', 'panna-wild-tour')
-                ]
+                'nonce'   => wp_create_nonce('pwt_nonce'),
             ]
         );
     }

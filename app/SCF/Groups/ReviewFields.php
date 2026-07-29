@@ -1,23 +1,33 @@
 <?php
 
-namespace PWT\SCF\Groups;
+declare(strict_types=1);
 
-use PWT\SCF\FieldGroup;
+namespace PWT\SCF\Groups;
 
 defined('ABSPATH') || exit;
 
-class ReviewFields extends FieldGroup
+use PWT\SCF\FieldGroup;
+
+/**
+ * Review field group.
+ */
+final class ReviewFields extends FieldGroup
 {
+    /**
+     * Register review fields.
+     */
     public function register(): void
     {
         $this->addGroup([
             'key' => 'group_pwt_review_details',
-            'title' => 'Review Details',
+            'title' => __('Review Details', 'panna-wild-tour'),
+
             'location' => [[[
                 'param' => 'post_type',
                 'operator' => '=',
                 'value' => 'pwt_review',
             ]]],
+
             'fields' => [
                 [
                     'key' => 'field_pwt_review_rating',

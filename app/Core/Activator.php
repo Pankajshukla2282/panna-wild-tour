@@ -1,56 +1,33 @@
 <?php
+
+declare(strict_types=1);
+
 namespace PWT\Core;
 
 defined('ABSPATH') || exit;
 
-class Activator
+/**
+ * Plugin activation handler.
+ */
+final class Activator
 {
+    /**
+     * Activate plugin.
+     */
     public static function activate(): void
     {
-        self::seedTaxonomies();
+        self::registerPostTypes();
 
         flush_rewrite_rules();
+
+        update_option('pwt_plugin_version', PWT_VERSION);
     }
 
-    private static function seedTaxonomies(): void
+    /**
+     * Register post types before flushing rewrite rules.
+     */
+    private static function registerPostTypes(): void
     {
-        $zones = [
-            'Madla',
-            'Hinauta',
-            'Akola',
-            'Panna Buffer'
-        ];
-
-        foreach ($zones as $zone) {
-
-            if (!term_exists($zone, 'pwt_safari_zone')) {
-
-                wp_insert_term(
-                    $zone,
-                    'pwt_safari_zone'
-                );
-
-            }
-
-        }
-
-        $seasons = [
-            'Summer',
-            'Monsoon',
-            'Winter'
-        ];
-
-        foreach ($seasons as $season) {
-
-            if (!term_exists($season, 'pwt_season')) {
-
-                wp_insert_term(
-                    $season,
-                    'pwt_season'
-                );
-
-            }
-
-        }
+        do_action('pwt/register_post_types');
     }
 }

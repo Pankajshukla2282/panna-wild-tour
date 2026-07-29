@@ -1,22 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PWT\Core;
 
 defined('ABSPATH') || exit;
 
 use PWT\Admin\AdminServiceProvider;
-use PWT\API\ApiServiceProvider;
 use PWT\Analytics\AnalyticsServiceProvider;
+use PWT\Api\ApiServiceProvider;
 use PWT\Frontend\FrontendServiceProvider;
 use PWT\Integrations\IntegrationServiceProvider;
 use PWT\PostTypes\PostTypeServiceProvider;
-use PWT\Taxonomies\TaxonomyServiceProvider;
 use PWT\SCF\SCFServiceProvider;
+use PWT\Taxonomies\TaxonomyServiceProvider;
 use PWT\Widgets\WidgetServiceProvider;
 
-class Application
+/**
+ * Plugin application.
+ */
+final class Application
 {
-    protected Container $container;
+    /**
+     * @var array<class-string<ServiceProvider>>
+     */
+    private const PROVIDERS = [
+        PostTypeServiceProvider::class,
+        TaxonomyServiceProvider::class,
+        SCFServiceProvider::class,
+        FrontendServiceProvider::class,
+        ApiServiceProvider::class,
+        WidgetServiceProvider::class,
+        AnalyticsServiceProvider::class,
+        AdminServiceProvider::class,
+        IntegrationServiceProvider::class,
+    ];
+
+    private Container $container;
 
     public function __construct()
     {
@@ -30,35 +50,21 @@ class Application
 
     public function init(): void
     {
+        $this->loadTextDomain();
+
+        foreach (self::PROVIDERS as $provider) {
+            $this->container->register($provider);
+        }
+
+        $this->container->boot();
+    }
+
+    private function loadTextDomain(): void
+    {
         load_plugin_textdomain(
             'panna-wild-tour',
             false,
             dirname(plugin_basename(PWT_PLUGIN_FILE)) . '/languages'
         );
-
-        $this->registerProviders();
-
-        $this->container->boot();
-    }
-
-    protected function registerProviders(): void
-    {
-        $this->container->register(AdminServiceProvider::class);
-
-        $this->container->register(PostTypeServiceProvider::class);
-
-        $this->container->register(TaxonomyServiceProvider::class);
-
-        $this->container->register(SCFServiceProvider::class);
-
-        $this->container->register(FrontendServiceProvider::class);
-
-        $this->container->register(ApiServiceProvider::class);
-
-        $this->container->register(WidgetServiceProvider::class);
-
-        $this->container->register(AnalyticsServiceProvider::class);
-
-        $this->container->register(IntegrationServiceProvider::class);
     }
 }

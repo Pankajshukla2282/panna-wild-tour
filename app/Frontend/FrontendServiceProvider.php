@@ -1,31 +1,25 @@
 <?php
 
-namespace PWT\Frontend;
+declare(strict_types=1);
 
-use PWT\Core\ServiceProvider;
+namespace PWT\Frontend;
 
 defined('ABSPATH') || exit;
 
-class FrontendServiceProvider extends ServiceProvider
+use PWT\Core\ServiceProvider;
+
+final class FrontendServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        // Reserved for future bindings.
+    }
+
     public function boot(): void
     {
-        require_once PWT_PLUGIN_PATH . 'bookings/booking-manager.php';
-        require_once PWT_PLUGIN_PATH . 'bookings/ajax-booking.php';
-        require_once PWT_PLUGIN_PATH . 'bookings/booking-form.php';
-        require_once PWT_PLUGIN_PATH . 'bookings/email-notifications.php';
-
-        (new \PWT\Bookings\BookingManager())->register();
-        (new \PWT\Bookings\AjaxBooking())->register();
-        (new \PWT\Payments\PaymentManager())->register();
-
-        if (!is_admin()) {
-            (new Assets())->register();
-            (new Shortcodes())->register();
-            (new TemplateLoader())->register();
-            (new Seo())->register();
-            (new ArchiveFilters())->register();
-            (new AvailabilityCalendar())->register();
-        }
+        $this->make(Assets::class)->register();
+        $this->make(TemplateLoader::class)->register();
+        $this->make(Search::class)->register();
+        $this->make(Breadcrumbs::class)->register();
     }
 }
