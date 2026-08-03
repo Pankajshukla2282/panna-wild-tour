@@ -8,7 +8,7 @@ defined('ABSPATH') || exit;
 
 use PWT\Admin\AdminServiceProvider;
 use PWT\Analytics\AnalyticsServiceProvider;
-use PWT\Api\ApiServiceProvider;
+use PWT\API\ApiServiceProvider;
 use PWT\Frontend\FrontendServiceProvider;
 use PWT\Integrations\IntegrationServiceProvider;
 use PWT\PostTypes\PostTypeServiceProvider;

@@ -6,6 +6,8 @@ namespace PWT\PostTypes;
 
 defined('ABSPATH') || exit;
 
+use PWT\PostTypes\Contracts\PostTypeInterface;
+
 /**
  * Base class for all plugin custom post types.
  */

@@ -18,6 +18,8 @@ define('PWT_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 require_once plugin_dir_path(__FILE__) . 'app/Core/Autoloader.php';
 
+PWT\Core\Autoloader::register();
+
 PWT\Core\Plugin::boot();
 
 register_activation_hook(
@@ -28,18 +30,6 @@ register_activation_hook(
 register_deactivation_hook(
     __FILE__,
     [PWT\Core\Plugin::class, 'deactivate']
-);
-
-PWT\Core\Application::boot();
-
-register_activation_hook(
-    __FILE__,
-    ['PWT\Core\Activator', 'activate']
-);
-
-register_deactivation_hook(
-    __FILE__,
-    ['PWT\Core\Deactivator', 'deactivate']
 );
 
 
