@@ -14,11 +14,9 @@ defined('ABSPATH') || exit;
 
 define('PWT_VERSION', '1.1.1');
 define('PWT_PLUGIN_FILE', __FILE__);
-define('PWT_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('PWT_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PWT_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
-require_once PWT_PLUGIN_PATH . 'app/Core/Autoloader.php';
+require_once plugin_dir_path(__FILE__) . 'app/Core/Autoloader.php';
 
 PWT\Core\Plugin::boot();
 

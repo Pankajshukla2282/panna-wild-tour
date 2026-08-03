@@ -4,6 +4,8 @@ namespace PWT\Admin;
 
 defined('ABSPATH') || exit;
 
+use PWT\Core\Paths;
+
 class Menu
 {
     public function register(): void
@@ -53,16 +55,16 @@ class Menu
 
     public function dashboard(): void
     {
-        include PWT_PLUGIN_PATH . 'app/Admin/Views/dashboard.php';
+        include Paths::path('app/Admin/Views/dashboard.php');
     }
 
     public function settings(): void
     {
-        include PWT_PLUGIN_PATH . 'app/Admin/Views/settings.php';
+        include Paths::path('app/Admin/Views/settings.php');
     }
 
     public function contentForms(): void
     {
-        include PWT_PLUGIN_PATH . 'app/Admin/Views/content-forms.php';
+        include Paths::path('app/Admin/Views/content-forms.php');
     }
 }

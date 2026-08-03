@@ -6,6 +6,8 @@ namespace PWT\Core;
 
 defined('ABSPATH') || exit;
 
+use PWT\Core\Paths;
+
 /**
  * PSR-4 style autoloader for the PWT plugin.
  *
@@ -42,7 +44,7 @@ final class Autoloader
     private static function autoload(string $class): void
     {
         if (
-            !defined('PWT_PLUGIN_PATH')
+            !defined('PWT_PLUGIN_FILE')
             || strncmp($class, self::PREFIX, strlen(self::PREFIX)) !== 0
         ) {
             return;
@@ -50,7 +52,7 @@ final class Autoloader
 
         $relativeClass = substr($class, strlen(self::PREFIX));
 
-        $file = PWT_PLUGIN_PATH
+        $file = trailingslashit(plugin_dir_path(PWT_PLUGIN_FILE))
             . 'app/'
             . str_replace('\\', DIRECTORY_SEPARATOR, $relativeClass)
             . '.php';

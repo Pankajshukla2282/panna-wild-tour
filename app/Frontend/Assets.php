@@ -6,6 +6,8 @@ namespace PWT\Frontend;
 
 defined('ABSPATH') || exit;
 
+use PWT\Core\Paths;
+
 final class Assets
 {
     public function register(): void
@@ -17,14 +19,14 @@ final class Assets
     {
         wp_enqueue_style(
             'pwt-plugin',
-            PWT_PLUGIN_URL . 'assets/css/frontend.css',
+            Paths::uri('assets/css/frontend.css'),
             [],
             PWT_VERSION
         );
 
         wp_enqueue_script(
             'pwt-plugin',
-            PWT_PLUGIN_URL . 'assets/js/frontend.js',
+            Paths::uri('assets/js/frontend.js'),
             ['jquery'],
             PWT_VERSION,
             true

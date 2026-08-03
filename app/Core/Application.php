@@ -15,6 +15,7 @@ use PWT\PostTypes\PostTypeServiceProvider;
 use PWT\SCF\SCFServiceProvider;
 use PWT\Taxonomies\TaxonomyServiceProvider;
 use PWT\Widgets\WidgetServiceProvider;
+use PWT\Core\Paths;
 
 /**
  * Plugin application.
