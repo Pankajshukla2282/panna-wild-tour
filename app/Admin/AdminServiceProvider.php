@@ -19,5 +19,7 @@ class AdminServiceProvider extends ServiceProvider
         (new Assets())->register();
 
         (new Settings())->register();
+
+        (new ContentSeeder())->register();
     }
 }

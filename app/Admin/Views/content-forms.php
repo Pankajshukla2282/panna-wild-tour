@@ -106,6 +106,12 @@ if (($_POST['action'] ?? '') === 'pwt_quick_create_content') {
     }
 }
 
+$seedStatus = sanitize_key($_GET['pwt_seed_status'] ?? '');
+$seedTerms = absint($_GET['pwt_seed_terms'] ?? 0);
+$seedPosts = absint($_GET['pwt_seed_posts'] ?? 0);
+$seedMedia = absint($_GET['pwt_seed_media'] ?? 0);
+$seedProfile = sanitize_key($_GET['pwt_seed_profile'] ?? 'basic');
+
 $taxonomyTerms = [
     'pwt_season' => get_terms(['taxonomy' => 'pwt_season', 'hide_empty' => false]),
     'pwt_activity' => get_terms(['taxonomy' => 'pwt_activity', 'hide_empty' => false]),
@@ -132,6 +138,74 @@ $latestMedia = get_posts([
     <?php if ($error) : ?>
         <div class="notice notice-error"><p><?php echo esc_html($error); ?></p></div>
     <?php endif; ?>
+
+    <?php if ($seedStatus === 'success') : ?>
+        <div class="notice notice-success">
+            <p>
+                <?php
+                echo esc_html(
+                    sprintf(
+                        /* translators: 1: terms created, 2: posts created */
+                        __('Starter content import completed. New terms: %1$d, new posts: %2$d.', 'panna-wild-tour'),
+                        $seedTerms,
+                        $seedPosts
+                    )
+                );
+                ?>
+            </p>
+            <p>
+                <?php
+                echo esc_html(
+                    sprintf(
+                        /* translators: 1: profile name, 2: featured image assignments */
+                        __('Profile: %1$s. Featured images assigned: %2$d.', 'panna-wild-tour'),
+                        $seedProfile === 'full' ? __('Full', 'panna-wild-tour') : __('Basic', 'panna-wild-tour'),
+                        $seedMedia
+                    )
+                );
+                ?>
+            </p>
+        </div>
+    <?php endif; ?>
+
+    <div class="card" style="max-width: 920px; margin-top: 20px; padding: 14px 18px;">
+        <h2 style="margin-top: 0;"><?php esc_html_e('Starter Content Import', 'panna-wild-tour'); ?></h2>
+        <p><?php esc_html_e('Generate launch-ready baseline content. Existing posts with matching titles are skipped so you can run this safely multiple times.', 'panna-wild-tour'); ?></p>
+        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+            <?php wp_nonce_field('pwt_seed_starter_content'); ?>
+            <input type="hidden" name="action" value="pwt_seed_starter_content">
+
+            <p>
+                <label for="pwt_seed_profile"><strong><?php esc_html_e('Import Profile', 'panna-wild-tour'); ?></strong></label><br>
+                <select id="pwt_seed_profile" name="seed_profile">
+                    <option value="basic"><?php esc_html_e('Basic (essential launch content)', 'panna-wild-tour'); ?></option>
+                    <option value="full"><?php esc_html_e('Full (includes resort, vehicle, review)', 'panna-wild-tour'); ?></option>
+                </select>
+            </p>
+
+            <p><strong><?php esc_html_e('Include Content Types', 'panna-wild-tour'); ?></strong></p>
+            <p>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_destination" checked> <?php esc_html_e('Destinations', 'panna-wild-tour'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_safari" checked> <?php esc_html_e('Safaris', 'panna-wild-tour'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_package" checked> <?php esc_html_e('Packages', 'panna-wild-tour'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_faq" checked> <?php esc_html_e('FAQs', 'panna-wild-tour'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_testimonial" checked> <?php esc_html_e('Testimonials', 'panna-wild-tour'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_review" checked> <?php esc_html_e('Reviews', 'panna-wild-tour'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_resort" checked> <?php esc_html_e('Resorts', 'panna-wild-tour'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_vehicle" checked> <?php esc_html_e('Vehicles', 'panna-wild-tour'); ?></label>
+            </p>
+
+            <p>
+                <label for="pwt_seed_featured_media"><strong><?php esc_html_e('Featured Media ID (optional)', 'panna-wild-tour'); ?></strong></label><br>
+                <input id="pwt_seed_featured_media" class="regular-text" type="number" min="0" name="seed_featured_media" placeholder="0">
+            </p>
+            <p>
+                <label><input type="checkbox" name="seed_use_latest_media" value="1"> <?php esc_html_e('If no ID is provided, use latest uploaded image as featured image', 'panna-wild-tour'); ?></label>
+            </p>
+
+            <?php submit_button(__('Import Starter Content', 'panna-wild-tour'), 'secondary', 'submit', false); ?>
+        </form>
+    </div>
 
     <form method="post">
         <?php wp_nonce_field('pwt_quick_create_content'); ?>

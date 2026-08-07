@@ -88,7 +88,7 @@ class Shortcodes
             __('Safari Experiences', 'panna-wild-tour'),
             __('Morning and evening safaris with expert drivers and naturalists.', 'panna-wild-tour'),
             $query,
-            'safari_type'
+            'shift'
         );
     }
 
@@ -379,25 +379,25 @@ class Shortcodes
         <section class="pwt-section">
             <header class="pwt-section-header">
                 <h2><?php esc_html_e('The Services We Offer', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('End-to-end support for safari booking, local travel, and special requests around Panna.', 'panna-wild-tour'); ?></p>
+                <p><?php esc_html_e('Complete travel support from planning to checkout, designed for smooth wildlife holidays in and around Panna.', 'panna-wild-tour'); ?></p>
             </header>
             <div class="pwt-cards-grid">
                 <article class="pwt-card">
                     <div class="pwt-card-body">
-                        <h3><?php esc_html_e('Concierge Service', 'panna-wild-tour'); ?></h3>
-                        <p><?php esc_html_e('Daily support for food, transport, medicine, permits, and logistics.', 'panna-wild-tour'); ?></p>
+                        <h3><?php esc_html_e('Safari Planning Concierge', 'panna-wild-tour'); ?></h3>
+                        <p><?php esc_html_e('Permit guidance, gate/slot planning, and personalized itinerary coordination for first-time and repeat travelers.', 'panna-wild-tour'); ?></p>
                     </div>
                 </article>
                 <article class="pwt-card">
                     <div class="pwt-card-body">
-                        <h3><?php esc_html_e('On-demand Service', 'panna-wild-tour'); ?></h3>
-                        <p><?php esc_html_e('Additional arrangements outside your package based on live requirements.', 'panna-wild-tour'); ?></p>
+                        <h3><?php esc_html_e('Stay and Transfer Support', 'panna-wild-tour'); ?></h3>
+                        <p><?php esc_html_e('Verified resorts, station/airport pickup, and on-ground coordination for stress-free travel days.', 'panna-wild-tour'); ?></p>
                     </div>
                 </article>
                 <article class="pwt-card">
                     <div class="pwt-card-body">
-                        <h3><?php esc_html_e('Special Service', 'panna-wild-tour'); ?></h3>
-                        <p><?php esc_html_e('Custom surprise experiences, local attractions, and nearby exploration plans.', 'panna-wild-tour'); ?></p>
+                        <h3><?php esc_html_e('Custom Local Experiences', 'panna-wild-tour'); ?></h3>
+                        <p><?php esc_html_e('Tailored add-ons such as waterfall trails, riverside visits, and family-friendly local explorations.', 'panna-wild-tour'); ?></p>
                     </div>
                 </article>
             </div>
@@ -441,7 +441,7 @@ class Shortcodes
                     wp_reset_postdata();
                 } else {
                     ?>
-                    <p><?php esc_html_e('No items found yet. Add content from the admin panel.', 'panna-wild-tour'); ?></p>
+                    <p><?php esc_html_e('No published items found yet. Add and publish content from PWT Dashboard or Quick Content Forms to show this section.', 'panna-wild-tour'); ?></p>
                     <?php
                 }
                 ?>
