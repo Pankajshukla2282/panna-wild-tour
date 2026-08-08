@@ -34,10 +34,15 @@ final class Assets
 
         wp_localize_script(
             'pwt-plugin',
-            'pwtData',
+            'pwtFrontend',
             [
-                'ajaxUrl' => admin_url('admin-ajax.php'),
-                'nonce'   => wp_create_nonce('pwt_nonce'),
+                'ajaxUrl'  => admin_url('admin-ajax.php'),
+                'nonce'    => wp_create_nonce('pwt_booking'),
+                'messages' => [
+                    'submitting' => __('Sending your booking request...', 'wildtours-plugin'),
+                    'success'    => __('Booking submitted successfully.', 'wildtours-plugin'),
+                    'error'      => __('Something went wrong. Please try again.', 'wildtours-plugin'),
+                ],
             ]
         );
     }

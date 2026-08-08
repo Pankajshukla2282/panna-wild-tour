@@ -27,13 +27,28 @@ final class BookingRepository
             return $postId;
         }
 
+        $metaMap = [
+            'name' => '_pwt_name',
+            'email' => '_pwt_email',
+            'phone' => '_pwt_phone',
+            'travel_date' => '_pwt_travel_date',
+            'persons' => '_pwt_persons',
+            'package_id' => '_pwt_package_id',
+            'message' => '_pwt_message',
+        ];
+
         foreach ($booking as $key => $value) {
+            $metaKey = $metaMap[$key] ?? ('_pwt_' . $key);
+
             update_post_meta(
                 $postId,
-                $key,
+                $metaKey,
                 $value
             );
         }
+
+        update_post_meta($postId, '_pwt_status', 'pending_payment');
+        update_post_meta($postId, '_pwt_payment_status', 'pending_payment');
 
         return $postId;
     }

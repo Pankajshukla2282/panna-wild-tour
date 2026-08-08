@@ -28,6 +28,7 @@ final class PostTypeServiceProvider extends ServiceProvider
         Review::class,
         FAQ::class,
         Gallery::class,
+        Booking::class,
     ];
 
     /**

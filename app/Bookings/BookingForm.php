@@ -28,8 +28,8 @@ class BookingForm
 			</header>
 
 			<form class="pwt-booking-form" method="post">
-				<input type="hidden" name="action" value="pwt_submit_booking">
-				<input type="hidden" name="nonce" value="<?php echo esc_attr(wp_create_nonce('pwt_booking_nonce')); ?>">
+				<input type="hidden" name="action" value="pwt_booking">
+				<input type="hidden" name="nonce" value="<?php echo esc_attr(wp_create_nonce('pwt_booking')); ?>">
 
 				<div class="pwt-form-grid">
 					<label>

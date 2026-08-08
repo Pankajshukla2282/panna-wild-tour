@@ -9,6 +9,7 @@ defined('ABSPATH') || exit;
 use PWT\Admin\AdminServiceProvider;
 use PWT\Analytics\AnalyticsServiceProvider;
 use PWT\API\ApiServiceProvider;
+use PWT\Bookings\BookingServiceProvider;
 use PWT\Frontend\FrontendServiceProvider;
 use PWT\Integrations\IntegrationServiceProvider;
 use PWT\PostTypes\PostTypeServiceProvider;
@@ -29,6 +30,7 @@ final class Application
         PostTypeServiceProvider::class,
         TaxonomyServiceProvider::class,
         SCFServiceProvider::class,
+        BookingServiceProvider::class,
         FrontendServiceProvider::class,
         ApiServiceProvider::class,
         WidgetServiceProvider::class,

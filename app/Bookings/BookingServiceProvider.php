@@ -8,6 +8,7 @@ defined('ABSPATH') || exit;
 
 use PWT\Core\ServiceProvider;
 use PWT\Bookings\Controllers\BookingController;
+use PWT\Payments\PaymentManager;
 
 /**
  * Registers booking services.
@@ -30,5 +31,9 @@ final class BookingServiceProvider extends ServiceProvider
         $controller = $this->make(BookingController::class);
 
         $controller->register();
+
+        $paymentManager = $this->make(PaymentManager::class);
+
+        $paymentManager->register();
     }
 }

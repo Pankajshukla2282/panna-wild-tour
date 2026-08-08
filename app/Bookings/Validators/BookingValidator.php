@@ -20,7 +20,9 @@ final class BookingValidator
 
             'travel_date' => sanitize_text_field($data['travel_date'] ?? ''),
 
-            'persons' => absint($data['persons'] ?? 1),
+            'persons' => max(1, absint($data['persons'] ?? 1)),
+
+            'package_id' => absint($data['package_id'] ?? 0),
 
             'message' => sanitize_textarea_field($data['message'] ?? ''),
         ];
@@ -33,7 +35,7 @@ final class BookingValidator
             ];
         }
 
-        if (!is_email($clean['email'])) {
+        if ($clean['email'] !== '' && !is_email($clean['email'])) {
 
             return [
                 'success' => false,
