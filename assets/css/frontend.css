@@ -307,6 +307,19 @@
     margin: 0 auto 24px;
 }
 
+.pwt-payment-portal .pwt-section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.pwt-portal-toolbar {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
 .pwt-form-message.is-success {
     color: #1f6f31;
 }

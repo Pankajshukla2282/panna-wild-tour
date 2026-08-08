@@ -293,8 +293,13 @@ class Shortcodes
         ?>
         <section class="pwt-section pwt-payment-portal">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('Complete Your Booking Payment', 'wildtours-plugin'); ?></h2>
-                <p><?php esc_html_e('Pay the advance amount and submit the transaction reference for confirmation.', 'wildtours-plugin'); ?></p>
+                <div>
+                    <h2><?php esc_html_e('Complete Your Booking Payment', 'wildtours-plugin'); ?></h2>
+                    <p><?php esc_html_e('Pay the advance amount and submit the transaction reference for confirmation.', 'wildtours-plugin'); ?></p>
+                </div>
+                <div class="pwt-portal-toolbar">
+                    <?php echo $this->currencySwitcher(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                </div>
             </header>
             <?php if (!empty($_GET['payment_success'])) : ?>
                 <p class="pwt-form-message is-success"><?php esc_html_e('Payment reference submitted. We will verify and confirm your booking shortly.', 'wildtours-plugin'); ?></p>
@@ -305,7 +310,7 @@ class Shortcodes
                 <div class="pwt-meta-chip"><strong><?php esc_html_e('Guest', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($context['name']); ?></div>
                 <div class="pwt-meta-chip"><strong><?php esc_html_e('Package', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($context['package_name']); ?></div>
                 <div class="pwt-meta-chip"><strong><?php esc_html_e('Travel Date', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($context['travel_date']); ?></div>
-                <div class="pwt-meta-chip"><strong><?php esc_html_e('Advance Due', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html('INR ' . number_format_i18n((float) $context['advance_amount'], 0)); ?></div>
+                <div class="pwt-meta-chip"><strong><?php esc_html_e('Advance Due', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($this->formatPortalAmount((float) $context['advance_amount'])); ?></div>
                 <div class="pwt-meta-chip"><strong><?php esc_html_e('Status', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html(\PWT\Payments\PaymentManager::statusLabel((string) $context['status'])); ?></div>
             </div>
             <?php if ($context['upi_id']) : ?>
@@ -341,6 +346,35 @@ class Shortcodes
         <?php
 
         return ob_get_clean();
+    }
+
+    private function currencySwitcher(): string
+    {
+        if (!function_exists('wildtours_component')) {
+            return '';
+        }
+
+        ob_start();
+        wildtours_component('currency-switcher');
+        return (string) ob_get_clean();
+    }
+
+    private function formatPortalAmount(float $amountInr): string
+    {
+        if (
+            function_exists('wildtours_currency')
+            && function_exists('wildtours_currency_symbol')
+            && function_exists('wildtours_convert_amount')
+        ) {
+            $currency = \wildtours_currency();
+            $converted = \wildtours_convert_amount($amountInr, $currency);
+
+            return \wildtours_currency_symbol($currency)
+                . ' '
+                . number_format_i18n((float) $converted, 0);
+        }
+
+        return 'INR ' . number_format_i18n($amountInr, 0);
     }
 
     private function heroSection(): string
