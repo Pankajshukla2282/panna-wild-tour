@@ -70,8 +70,8 @@ final class EmailTemplates
     /**
      * Format a label/value pair.
      */
-    private static function line(string $label, string $value): string
+    private static function line(string $label, string|int|float $value): string
     {
-        return sprintf('%s: %s', $label, $value);
+        return sprintf('%s: %s', $label, (string) $value);
     }
 }
