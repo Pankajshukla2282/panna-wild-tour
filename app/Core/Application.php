@@ -63,7 +63,7 @@ final class Application
     private function loadTextDomain(): void
     {
         load_plugin_textdomain(
-            'panna-wild-tour',
+            'wildtours-plugin',
             false,
             dirname(plugin_basename(PWT_PLUGIN_FILE)) . '/languages'
         );

@@ -8,7 +8,7 @@
  * Requires at least: 6.7
  * Requires PHP: 8.2
  * License: GPL-2.0-or-later
- * Text Domain: panna-wild-tour
+ * Text Domain: wildtours-plugin
  */
 
 defined('ABSPATH') || exit;
@@ -36,8 +36,8 @@ register_deactivation_hook(
 
 add_filter('plugin_action_links_' . PWT_PLUGIN_BASENAME, static function (array $links): array {
     $custom = [
-        '<a href="' . esc_url(admin_url('admin.php?page=pwt-settings')) . '">' . esc_html__('Settings', 'panna-wild-tour') . '</a>',
-        '<a href="' . esc_url(admin_url('edit.php?post_type=pwt_booking')) . '">' . esc_html__('Bookings', 'panna-wild-tour') . '</a>',
+        '<a href="' . esc_url(admin_url('admin.php?page=pwt-settings')) . '">' . esc_html__('Settings', 'wildtours-plugin') . '</a>',
+        '<a href="' . esc_url(admin_url('edit.php?post_type=pwt_booking')) . '">' . esc_html__('Bookings', 'wildtours-plugin') . '</a>',
     ];
 
     return array_merge($custom, $links);
@@ -48,8 +48,8 @@ add_filter('plugin_row_meta', static function (array $links, string $file): arra
         return $links;
     }
 
-    $links[] = '<a href="' . esc_url('https://www.pannawildtour.com') . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Website', 'panna-wild-tour') . '</a>';
-    $links[] = '<a href="' . esc_url('https://www.pannawildtour.com/contact-us') . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Support', 'panna-wild-tour') . '</a>';
+    $links[] = '<a href="' . esc_url('https://www.pannawildtour.com') . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Website', 'wildtours-plugin') . '</a>';
+    $links[] = '<a href="' . esc_url('https://www.pannawildtour.com/contact-us') . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Support', 'wildtours-plugin') . '</a>';
 
     return $links;
 }, 10, 2);

@@ -20,7 +20,7 @@ final class TestimonialFields extends FieldGroup
     {
         $this->addGroup([
             'key' => 'group_pwt_testimonial_details',
-            'title' => __('Testimonial Details', 'panna-wild-tour'),
+            'title' => __('Testimonial Details', 'wildtours-plugin'),
 
             'location' => [[[
                 'param' => 'post_type',

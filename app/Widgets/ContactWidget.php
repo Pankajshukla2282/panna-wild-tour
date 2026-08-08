@@ -10,8 +10,8 @@ class ContactWidget extends \WP_Widget
     {
         parent::__construct(
             'pwt_contact_widget',
-            __('PWT Contact Card', 'panna-wild-tour'),
-            ['description' => __('Shows contact details from plugin settings.', 'panna-wild-tour')]
+            __('PWT Contact Card', 'wildtours-plugin'),
+            ['description' => __('Shows contact details from plugin settings.', 'wildtours-plugin')]
         );
     }
 
@@ -23,7 +23,7 @@ class ContactWidget extends \WP_Widget
         $email = $settings['contact_email'] ?? get_bloginfo('admin_email');
 
         echo wp_kses_post($args['before_widget']);
-        echo wp_kses_post($args['before_title'] . esc_html__('Contact Us', 'panna-wild-tour') . $args['after_title']);
+        echo wp_kses_post($args['before_title'] . esc_html__('Contact Us', 'wildtours-plugin') . $args['after_title']);
         echo '<p><strong>' . esc_html($company) . '</strong></p>';
 
         if ($phone) {

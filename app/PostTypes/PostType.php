@@ -118,7 +118,7 @@ abstract class PostType implements PostTypeInterface
         ) {
             _doing_it_wrong(
                 static::class,
-                __('Post type configuration is incomplete.', 'panna-wild-tour'),
+                __('Post type configuration is incomplete.', 'wildtours-plugin'),
                 PWT_VERSION
             );
         }
@@ -158,15 +158,15 @@ abstract class PostType implements PostTypeInterface
             [
                 'name'               => $this->plural,
                 'singular_name'      => $this->singular,
-                'add_new'            => __('Add New', 'panna-wild-tour'),
-                'add_new_item'       => sprintf(__('Add New %s', 'panna-wild-tour'), $this->singular),
-                'edit_item'          => sprintf(__('Edit %s', 'panna-wild-tour'), $this->singular),
-                'new_item'           => sprintf(__('New %s', 'panna-wild-tour'), $this->singular),
-                'view_item'          => sprintf(__('View %s', 'panna-wild-tour'), $this->singular),
-                'search_items'       => sprintf(__('Search %s', 'panna-wild-tour'), $this->plural),
-                'not_found'          => sprintf(__('No %s found.', 'panna-wild-tour'), strtolower($this->plural)),
-                'not_found_in_trash' => sprintf(__('No %s found in Trash.', 'panna-wild-tour'), strtolower($this->plural)),
-                'all_items'          => sprintf(__('All %s', 'panna-wild-tour'), $this->plural),
+                'add_new'            => __('Add New', 'wildtours-plugin'),
+                'add_new_item'       => sprintf(__('Add New %s', 'wildtours-plugin'), $this->singular),
+                'edit_item'          => sprintf(__('Edit %s', 'wildtours-plugin'), $this->singular),
+                'new_item'           => sprintf(__('New %s', 'wildtours-plugin'), $this->singular),
+                'view_item'          => sprintf(__('View %s', 'wildtours-plugin'), $this->singular),
+                'search_items'       => sprintf(__('Search %s', 'wildtours-plugin'), $this->plural),
+                'not_found'          => sprintf(__('No %s found.', 'wildtours-plugin'), strtolower($this->plural)),
+                'not_found_in_trash' => sprintf(__('No %s found in Trash.', 'wildtours-plugin'), strtolower($this->plural)),
+                'all_items'          => sprintf(__('All %s', 'wildtours-plugin'), $this->plural),
             ]
         );
     }

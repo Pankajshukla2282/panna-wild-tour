@@ -20,7 +20,7 @@ final class FAQFields extends FieldGroup
     {
         $this->addGroup([
             'key' => 'group_pwt_faq_details',
-            'title' => __('FAQ Details', 'panna-wild-tour'),
+            'title' => __('FAQ Details', 'wildtours-plugin'),
 
             'location' => [[[
                 'param' => 'post_type',

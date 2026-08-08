@@ -67,7 +67,7 @@ class RestApi
 
         return new \WP_Error(
             'pwt_rest_forbidden',
-            __('Unauthorized booking API request.', 'panna-wild-tour'),
+            __('Unauthorized booking API request.', 'wildtours-plugin'),
             ['status' => 403]
         );
     }
@@ -100,11 +100,11 @@ class RestApi
         $date = sanitize_text_field((string) $request->get_param('date'));
 
         if (!$packageId || !$date) {
-            return new \WP_REST_Response(['message' => __('package_id and date are required.', 'panna-wild-tour')], 422);
+            return new \WP_REST_Response(['message' => __('package_id and date are required.', 'wildtours-plugin')], 422);
         }
 
         if (!$this->isValidDate($date)) {
-            return new \WP_REST_Response(['message' => __('Date must be in YYYY-MM-DD format.', 'panna-wild-tour')], 422);
+            return new \WP_REST_Response(['message' => __('Date must be in YYYY-MM-DD format.', 'wildtours-plugin')], 422);
         }
 
         $available = \PWT\Frontend\AvailabilityCalendar::isDateAvailable($packageId, $date);
@@ -127,23 +127,23 @@ class RestApi
         $message = sanitize_textarea_field((string) $request->get_param('message'));
 
         if (!$name || !$phone || !$travelDate || $persons < 1 || $persons > 50) {
-            return new \WP_REST_Response(['message' => __('Invalid booking request.', 'panna-wild-tour')], 422);
+            return new \WP_REST_Response(['message' => __('Invalid booking request.', 'wildtours-plugin')], 422);
         }
 
         if (!$this->isValidDate($travelDate)) {
-            return new \WP_REST_Response(['message' => __('Travel date must be in YYYY-MM-DD format.', 'panna-wild-tour')], 422);
+            return new \WP_REST_Response(['message' => __('Travel date must be in YYYY-MM-DD format.', 'wildtours-plugin')], 422);
         }
 
         if (!preg_match('/^\+?[0-9\s\-]{8,20}$/', $phone)) {
-            return new \WP_REST_Response(['message' => __('Phone number format is invalid.', 'panna-wild-tour')], 422);
+            return new \WP_REST_Response(['message' => __('Phone number format is invalid.', 'wildtours-plugin')], 422);
         }
 
         if ($email !== '' && !is_email($email)) {
-            return new \WP_REST_Response(['message' => __('Email format is invalid.', 'panna-wild-tour')], 422);
+            return new \WP_REST_Response(['message' => __('Email format is invalid.', 'wildtours-plugin')], 422);
         }
 
         if ($packageId && !\PWT\Frontend\AvailabilityCalendar::isDateAvailable($packageId, $travelDate)) {
-            return new \WP_REST_Response(['message' => __('Selected date is not available.', 'panna-wild-tour')], 409);
+            return new \WP_REST_Response(['message' => __('Selected date is not available.', 'wildtours-plugin')], 409);
         }
 
         $bookingId = wp_insert_post([
@@ -153,7 +153,7 @@ class RestApi
         ], true);
 
         if (is_wp_error($bookingId)) {
-            return new \WP_REST_Response(['message' => __('Unable to create booking.', 'panna-wild-tour')], 500);
+            return new \WP_REST_Response(['message' => __('Unable to create booking.', 'wildtours-plugin')], 500);
         }
 
         update_post_meta($bookingId, '_pwt_name', $name);
@@ -196,7 +196,7 @@ class RestApi
         if ($count >= $limit) {
             return new \WP_Error(
                 'pwt_rest_rate_limited',
-                __('Rate limit exceeded. Please retry after a minute.', 'panna-wild-tour'),
+                __('Rate limit exceeded. Please retry after a minute.', 'wildtours-plugin'),
                 ['status' => 429]
             );
         }

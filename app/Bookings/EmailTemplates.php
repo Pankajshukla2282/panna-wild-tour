@@ -20,7 +20,7 @@ final class EmailTemplates
             'pwt/booking/admin_subject',
             sprintf(
                 /* translators: %s: customer name */
-                __('New Booking Request from %s', 'panna-wild-tour'),
+                __('New Booking Request from %s', 'wildtours-plugin'),
                 $name
             ),
             $name
@@ -33,27 +33,27 @@ final class EmailTemplates
     public static function bookingAdminBody(array $data): string
     {
         $lines = [
-            __('A new booking request has been submitted.', 'panna-wild-tour'),
+            __('A new booking request has been submitted.', 'wildtours-plugin'),
             '',
-            self::line(__('Name', 'panna-wild-tour'), $data['name'] ?? ''),
-            self::line(__('Phone', 'panna-wild-tour'), $data['phone'] ?? ''),
-            self::line(__('Email', 'panna-wild-tour'), $data['email'] ?? ''),
-            self::line(__('Travel Date', 'panna-wild-tour'), $data['travel_date'] ?? ''),
-            self::line(__('Persons', 'panna-wild-tour'), $data['persons'] ?? ''),
-            self::line(__('Package', 'panna-wild-tour'), $data['package_name'] ?? ''),
-            self::line(__('Message', 'panna-wild-tour'), $data['message'] ?? ''),
+            self::line(__('Name', 'wildtours-plugin'), $data['name'] ?? ''),
+            self::line(__('Phone', 'wildtours-plugin'), $data['phone'] ?? ''),
+            self::line(__('Email', 'wildtours-plugin'), $data['email'] ?? ''),
+            self::line(__('Travel Date', 'wildtours-plugin'), $data['travel_date'] ?? ''),
+            self::line(__('Persons', 'wildtours-plugin'), $data['persons'] ?? ''),
+            self::line(__('Package', 'wildtours-plugin'), $data['package_name'] ?? ''),
+            self::line(__('Message', 'wildtours-plugin'), $data['message'] ?? ''),
         ];
 
         if (!empty($data['estimated_total'])) {
             $lines[] = self::line(
-                __('Estimated Total', 'panna-wild-tour'),
+                __('Estimated Total', 'wildtours-plugin'),
                 (string) $data['estimated_total']
             );
         }
 
         if (!empty($data['payment_link'])) {
             $lines[] = self::line(
-                __('Payment Link', 'panna-wild-tour'),
+                __('Payment Link', 'wildtours-plugin'),
                 (string) $data['payment_link']
             );
         }

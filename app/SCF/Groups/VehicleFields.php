@@ -21,7 +21,7 @@ final class VehicleFields extends FieldGroup
         $this->addGroup([
             'key' => 'group_pwt_vehicle_details',
 
-            'title' => __('Vehicle Details', 'panna-wild-tour'),
+            'title' => __('Vehicle Details', 'wildtours-plugin'),
 
             'location' => [[[
                 'param'    => 'post_type',
@@ -33,42 +33,42 @@ final class VehicleFields extends FieldGroup
 
                 [
                     'key'     => 'field_pwt_vehicle_type',
-                    'label'   => __('Vehicle Type', 'panna-wild-tour'),
+                    'label'   => __('Vehicle Type', 'wildtours-plugin'),
                     'name'    => 'vehicle_type',
                     'type'    => 'select',
 
                     'choices' => [
-                        'jeep'    => __('Jeep', 'panna-wild-tour'),
-                        'canter'  => __('Canter', 'panna-wild-tour'),
-                        'tempo'   => __('Tempo Traveller', 'panna-wild-tour'),
-                        'car'     => __('Car', 'panna-wild-tour'),
+                        'jeep'    => __('Jeep', 'wildtours-plugin'),
+                        'canter'  => __('Canter', 'wildtours-plugin'),
+                        'tempo'   => __('Tempo Traveller', 'wildtours-plugin'),
+                        'car'     => __('Car', 'wildtours-plugin'),
                     ],
                 ],
 
                 [
                     'key'   => 'field_pwt_vehicle_capacity',
-                    'label' => __('Passenger Capacity', 'panna-wild-tour'),
+                    'label' => __('Passenger Capacity', 'wildtours-plugin'),
                     'name'  => 'capacity',
                     'type'  => 'number',
                 ],
 
                 [
                     'key'   => 'field_pwt_vehicle_price_day',
-                    'label' => __('Price per Day (INR)', 'panna-wild-tour'),
+                    'label' => __('Price per Day (INR)', 'wildtours-plugin'),
                     'name'  => 'price_per_day',
                     'type'  => 'number',
                 ],
 
                 [
                     'key'   => 'field_pwt_vehicle_ac',
-                    'label' => __('Air Conditioned', 'panna-wild-tour'),
+                    'label' => __('Air Conditioned', 'wildtours-plugin'),
                     'name'  => 'is_ac',
                     'type'  => 'true_false',
                 ],
 
                 [
                     'key'   => 'field_pwt_vehicle_notes',
-                    'label' => __('Vehicle Notes', 'panna-wild-tour'),
+                    'label' => __('Vehicle Notes', 'wildtours-plugin'),
                     'name'  => 'notes',
                     'type'  => 'textarea',
                 ],

@@ -33,28 +33,28 @@ class AvailabilityCalendar
         ?>
         <section class="pwt-section">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('Check Availability', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('Check if your preferred package is open on a selected date.', 'panna-wild-tour'); ?></p>
+                <h2><?php esc_html_e('Check Availability', 'wildtours-plugin'); ?></h2>
+                <p><?php esc_html_e('Check if your preferred package is open on a selected date.', 'wildtours-plugin'); ?></p>
             </header>
             <form method="get" class="pwt-form-grid">
                 <label>
-                    <span><?php esc_html_e('Package', 'panna-wild-tour'); ?></span>
+                    <span><?php esc_html_e('Package', 'wildtours-plugin'); ?></span>
                     <select name="availability_package" required>
-                        <option value=""><?php esc_html_e('Select package', 'panna-wild-tour'); ?></option>
+                        <option value=""><?php esc_html_e('Select package', 'wildtours-plugin'); ?></option>
                         <?php foreach ($packages as $package) : ?>
                             <option value="<?php echo esc_attr((string) $package->ID); ?>" <?php selected($selectedPackage, (int) $package->ID); ?>><?php echo esc_html($package->post_title); ?></option>
                         <?php endforeach; ?>
                     </select>
                 </label>
                 <label>
-                    <span><?php esc_html_e('Date', 'panna-wild-tour'); ?></span>
+                    <span><?php esc_html_e('Date', 'wildtours-plugin'); ?></span>
                     <input type="date" name="availability_date" min="<?php echo esc_attr(current_time('Y-m-d')); ?>" value="<?php echo esc_attr($selectedDate); ?>" required>
                 </label>
-                <p><button type="submit" class="pwt-btn"><?php esc_html_e('Check', 'panna-wild-tour'); ?></button></p>
+                <p><button type="submit" class="pwt-btn"><?php esc_html_e('Check', 'wildtours-plugin'); ?></button></p>
             </form>
             <?php if ($isAvailable !== null) : ?>
                 <p class="pwt-form-message <?php echo $isAvailable ? 'is-success' : 'is-error'; ?>">
-                    <?php echo esc_html($isAvailable ? __('Date is available.', 'panna-wild-tour') : __('Date is unavailable. Please choose another date.', 'panna-wild-tour')); ?>
+                    <?php echo esc_html($isAvailable ? __('Date is available.', 'wildtours-plugin') : __('Date is unavailable. Please choose another date.', 'wildtours-plugin')); ?>
                 </p>
             <?php endif; ?>
         </section>

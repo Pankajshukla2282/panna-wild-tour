@@ -98,7 +98,7 @@ abstract class Taxonomy implements TaxonomyInterface
         ) {
             _doing_it_wrong(
                 static::class,
-                __('Taxonomy configuration is incomplete.', 'panna-wild-tour'),
+                __('Taxonomy configuration is incomplete.', 'wildtours-plugin'),
                 defined('PWT_VERSION') ? PWT_VERSION : '1.0.0'
             );
         }
@@ -129,15 +129,15 @@ abstract class Taxonomy implements TaxonomyInterface
         return apply_filters(
             "pwt/taxonomy_labels/{$this->taxonomy}",
             [
-                'name'              => __($this->plural, 'panna-wild-tour'),
-                'singular_name'     => __($this->singular, 'panna-wild-tour'),
-                'search_items'      => sprintf(__('Search %s', 'panna-wild-tour'), $this->plural),
-                'all_items'         => sprintf(__('All %s', 'panna-wild-tour'), $this->plural),
-                'edit_item'         => sprintf(__('Edit %s', 'panna-wild-tour'), $this->singular),
-                'update_item'       => sprintf(__('Update %s', 'panna-wild-tour'), $this->singular),
-                'add_new_item'      => sprintf(__('Add New %s', 'panna-wild-tour'), $this->singular),
-                'new_item_name'     => sprintf(__('New %s Name', 'panna-wild-tour'), $this->singular),
-                'menu_name'         => __($this->plural, 'panna-wild-tour'),
+                'name'              => __($this->plural, 'wildtours-plugin'),
+                'singular_name'     => __($this->singular, 'wildtours-plugin'),
+                'search_items'      => sprintf(__('Search %s', 'wildtours-plugin'), $this->plural),
+                'all_items'         => sprintf(__('All %s', 'wildtours-plugin'), $this->plural),
+                'edit_item'         => sprintf(__('Edit %s', 'wildtours-plugin'), $this->singular),
+                'update_item'       => sprintf(__('Update %s', 'wildtours-plugin'), $this->singular),
+                'add_new_item'      => sprintf(__('Add New %s', 'wildtours-plugin'), $this->singular),
+                'new_item_name'     => sprintf(__('New %s Name', 'wildtours-plugin'), $this->singular),
+                'menu_name'         => __($this->plural, 'wildtours-plugin'),
             ]
         );
     }

@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   package:
-    name: Package panna-wild-tour
+    name: Package wildtours-plugin
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,15 +33,15 @@ jobs:
 
       - name: Validate plugin structure
         run: |
-          test -f panna-wild-tour.php
-          grep -qiE 'Plugin Name:' panna-wild-tour.php
+          test -f wildtours-plugin.php
+          grep -qiE 'Plugin Name:' wildtours-plugin.php
 
       - name: Build installable zip
         shell: bash
         run: |
           set -euo pipefail
-          SLUG="panna-wild-tour"
-          VERSION="$(grep -iE 'Version:' panna-wild-tour.php | head -n1 | sed -E 's/.*Version:[[:space:]]*([0-9][^[:space:];]*).*/\1/')"
+          SLUG="wildtours-plugin"
+          VERSION="$(grep -iE 'Version:' wildtours-plugin.php | head -n1 | sed -E 's/.*Version:[[:space:]]*([0-9][^[:space:];]*).*/\1/')"
           VERSION="${VERSION:-dev}"
           PKG_ROOT="${RUNNER_TEMP}/pkg"
           mkdir -p "${PKG_ROOT}/${SLUG}"
@@ -65,29 +65,29 @@ jobs:
 
       - name: Verify zip structure
         run: |
-          unzip -l "${ZIP_PATH}" | grep -q "${SLUG}/panna-wild-tour.php"
+          unzip -l "${ZIP_PATH}" | grep -q "${SLUG}/wildtours-plugin.php"
           unzip -l "${ZIP_PATH}" | grep -q "${SLUG}/uninstall.php"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: panna-wild-tour-${{ env.PACKAGE_VERSION }}
+          name: wildtours-plugin-${{ env.PACKAGE_VERSION }}
           path: ${{ runner.temp }}/pkg
           if-no-files-found: error
 
       - name: Download artifact as delivered
         uses: actions/download-artifact@v4
         with:
-          name: panna-wild-tour-${{ env.PACKAGE_VERSION }}
+          name: wildtours-plugin-${{ env.PACKAGE_VERSION }}
           path: ${{ runner.temp }}/verify
 
       - name: Verify downloaded artifact is installable
         run: |
           set -euo pipefail
-          SLUG="panna-wild-tour"
+          SLUG="wildtours-plugin"
           VERIFY="${{ runner.temp }}/verify"
           test -d "${VERIFY}/${SLUG}"
-          test -f "${VERIFY}/${SLUG}/panna-wild-tour.php"
+          test -f "${VERIFY}/${SLUG}/wildtours-plugin.php"
           test -f "${VERIFY}/${SLUG}/uninstall.php"
 
       - name: Create Release
@@ -96,5 +96,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${GITHUB_REF_NAME}" "${ZIP_PATH}" \
-            --title "panna-wild-tour ${GITHUB_REF_NAME}" \
+            --title "wildtours-plugin ${GITHUB_REF_NAME}" \
             --generate-notes || true

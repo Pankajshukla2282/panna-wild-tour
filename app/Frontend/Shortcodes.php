@@ -69,8 +69,8 @@ class Shortcodes
         $query = new \WP_Query($args);
 
         return $this->renderCardsSection(
-            __('Featured Packages', 'panna-wild-tour'),
-            __('Handpicked itineraries for families, couples, and wildlife photographers.', 'panna-wild-tour'),
+            __('Featured Packages', 'wildtours-plugin'),
+            __('Handpicked itineraries for families, couples, and wildlife photographers.', 'wildtours-plugin'),
             $query,
             'duration'
         );
@@ -85,8 +85,8 @@ class Shortcodes
         ]);
 
         return $this->renderCardsSection(
-            __('Safari Experiences', 'panna-wild-tour'),
-            __('Morning and evening safaris with expert drivers and naturalists.', 'panna-wild-tour'),
+            __('Safari Experiences', 'wildtours-plugin'),
+            __('Morning and evening safaris with expert drivers and naturalists.', 'wildtours-plugin'),
             $query,
             'shift'
         );
@@ -101,8 +101,8 @@ class Shortcodes
         ]);
 
         return $this->renderCardsSection(
-            __('Explore Destinations', 'panna-wild-tour'),
-            __('From tiger reserve landscapes to hidden waterfalls and heritage temples.', 'panna-wild-tour'),
+            __('Explore Destinations', 'wildtours-plugin'),
+            __('From tiger reserve landscapes to hidden waterfalls and heritage temples.', 'wildtours-plugin'),
             $query,
             ''
         );
@@ -120,8 +120,8 @@ class Shortcodes
         ?>
         <section class="pwt-section">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('Guest Stories', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('What travelers say about their Panna adventure with us.', 'panna-wild-tour'); ?></p>
+                <h2><?php esc_html_e('Guest Stories', 'wildtours-plugin'); ?></h2>
+                <p><?php esc_html_e('What travelers say about their Panna adventure with us.', 'wildtours-plugin'); ?></p>
             </header>
             <div class="pwt-testimonials">
                 <?php
@@ -138,7 +138,7 @@ class Shortcodes
                     wp_reset_postdata();
                 } else {
                     ?>
-                    <p><?php esc_html_e('Add testimonials to showcase guest experiences.', 'panna-wild-tour'); ?></p>
+                    <p><?php esc_html_e('Add testimonials to showcase guest experiences.', 'wildtours-plugin'); ?></p>
                     <?php
                 }
                 ?>
@@ -161,8 +161,8 @@ class Shortcodes
         ?>
         <section class="pwt-section pwt-faq">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('Frequently Asked Questions', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('Everything you need before planning your wild tour.', 'panna-wild-tour'); ?></p>
+                <h2><?php esc_html_e('Frequently Asked Questions', 'wildtours-plugin'); ?></h2>
+                <p><?php esc_html_e('Everything you need before planning your wild tour.', 'wildtours-plugin'); ?></p>
             </header>
             <div class="pwt-faq-list">
                 <?php
@@ -179,7 +179,7 @@ class Shortcodes
                     wp_reset_postdata();
                 } else {
                     ?>
-                    <p><?php esc_html_e('Add FAQs to answer common traveler questions.', 'panna-wild-tour'); ?></p>
+                    <p><?php esc_html_e('Add FAQs to answer common traveler questions.', 'wildtours-plugin'); ?></p>
                     <?php
                 }
                 ?>
@@ -202,8 +202,8 @@ class Shortcodes
         ?>
         <section class="pwt-section">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('Verified Reviews', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('Recent guest reviews from completed tours.', 'panna-wild-tour'); ?></p>
+                <h2><?php esc_html_e('Verified Reviews', 'wildtours-plugin'); ?></h2>
+                <p><?php esc_html_e('Recent guest reviews from completed tours.', 'wildtours-plugin'); ?></p>
             </header>
             <div class="pwt-testimonials">
                 <?php if ($query->have_posts()) : ?>
@@ -215,7 +215,7 @@ class Shortcodes
                     <?php endwhile; ?>
                     <?php wp_reset_postdata(); ?>
                 <?php else : ?>
-                    <p><?php esc_html_e('Add reviews to strengthen trust and conversion.', 'panna-wild-tour'); ?></p>
+                    <p><?php esc_html_e('Add reviews to strengthen trust and conversion.', 'wildtours-plugin'); ?></p>
                 <?php endif; ?>
             </div>
         </section>
@@ -238,23 +238,23 @@ class Shortcodes
         ?>
         <section class="pwt-section pwt-contact-card">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('Plan with Local Experts', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('Talk to our team for custom itineraries, permits, and stay recommendations.', 'panna-wild-tour'); ?></p>
+                <h2><?php esc_html_e('Plan with Local Experts', 'wildtours-plugin'); ?></h2>
+                <p><?php esc_html_e('Talk to our team for custom itineraries, permits, and stay recommendations.', 'wildtours-plugin'); ?></p>
             </header>
             <ul class="pwt-contact-list">
-                <li><strong><?php esc_html_e('Company', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html($company); ?></li>
+                <li><strong><?php esc_html_e('Company', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($company); ?></li>
                 <?php if ($phone) : ?>
-                    <li><strong><?php esc_html_e('Phone', 'panna-wild-tour'); ?>:</strong> <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone)); ?>"><?php echo esc_html($phone); ?></a></li>
+                    <li><strong><?php esc_html_e('Phone', 'wildtours-plugin'); ?>:</strong> <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone)); ?>"><?php echo esc_html($phone); ?></a></li>
                 <?php endif; ?>
                 <?php if ($email) : ?>
-                    <li><strong><?php esc_html_e('Email', 'panna-wild-tour'); ?>:</strong> <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a></li>
+                    <li><strong><?php esc_html_e('Email', 'wildtours-plugin'); ?>:</strong> <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a></li>
                 <?php endif; ?>
                 <?php if ($address) : ?>
-                    <li><strong><?php esc_html_e('Address', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html($address); ?></li>
+                    <li><strong><?php esc_html_e('Address', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($address); ?></li>
                 <?php endif; ?>
             </ul>
             <?php if ($whatsappUrl) : ?>
-                <p><a class="pwt-btn" href="<?php echo esc_url($whatsappUrl); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Chat on WhatsApp', 'panna-wild-tour'); ?></a></p>
+                <p><a class="pwt-btn" href="<?php echo esc_url($whatsappUrl); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Chat on WhatsApp', 'wildtours-plugin'); ?></a></p>
             <?php endif; ?>
         </section>
         <?php
@@ -272,44 +272,44 @@ class Shortcodes
         $token = sanitize_text_field($_GET['pwt_payment'] ?? '');
 
         if (!$token) {
-            return '<section class="pwt-section"><p>' . esc_html__('Payment link is invalid or missing.', 'panna-wild-tour') . '</p></section>';
+            return '<section class="pwt-section"><p>' . esc_html__('Payment link is invalid or missing.', 'wildtours-plugin') . '</p></section>';
         }
 
         $context = \PWT\Payments\PaymentManager::portalContext($token);
 
         if (!$context) {
-            return '<section class="pwt-section"><p>' . esc_html__('Payment request not found.', 'panna-wild-tour') . '</p></section>';
+            return '<section class="pwt-section"><p>' . esc_html__('Payment request not found.', 'wildtours-plugin') . '</p></section>';
         }
 
         $methodLabels = [
-            'upi' => __('UPI', 'panna-wild-tour'),
-            'bank_transfer' => __('Bank Transfer', 'panna-wild-tour'),
-            'cash' => __('Cash', 'panna-wild-tour'),
-            'card' => __('Card', 'panna-wild-tour'),
-            'net_banking' => __('Net Banking', 'panna-wild-tour'),
+            'upi' => __('UPI', 'wildtours-plugin'),
+            'bank_transfer' => __('Bank Transfer', 'wildtours-plugin'),
+            'cash' => __('Cash', 'wildtours-plugin'),
+            'card' => __('Card', 'wildtours-plugin'),
+            'net_banking' => __('Net Banking', 'wildtours-plugin'),
         ];
 
         ob_start();
         ?>
         <section class="pwt-section pwt-payment-portal">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('Complete Your Booking Payment', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('Pay the advance amount and submit the transaction reference for confirmation.', 'panna-wild-tour'); ?></p>
+                <h2><?php esc_html_e('Complete Your Booking Payment', 'wildtours-plugin'); ?></h2>
+                <p><?php esc_html_e('Pay the advance amount and submit the transaction reference for confirmation.', 'wildtours-plugin'); ?></p>
             </header>
             <?php if (!empty($_GET['payment_success'])) : ?>
-                <p class="pwt-form-message is-success"><?php esc_html_e('Payment reference submitted. We will verify and confirm your booking shortly.', 'panna-wild-tour'); ?></p>
+                <p class="pwt-form-message is-success"><?php esc_html_e('Payment reference submitted. We will verify and confirm your booking shortly.', 'wildtours-plugin'); ?></p>
             <?php elseif (!empty($_GET['payment_error'])) : ?>
-                <p class="pwt-form-message is-error"><?php esc_html_e('Payment reference is required.', 'panna-wild-tour'); ?></p>
+                <p class="pwt-form-message is-error"><?php esc_html_e('Payment reference is required.', 'wildtours-plugin'); ?></p>
             <?php endif; ?>
             <div class="pwt-meta-grid">
-                <div class="pwt-meta-chip"><strong><?php esc_html_e('Guest', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html($context['name']); ?></div>
-                <div class="pwt-meta-chip"><strong><?php esc_html_e('Package', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html($context['package_name']); ?></div>
-                <div class="pwt-meta-chip"><strong><?php esc_html_e('Travel Date', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html($context['travel_date']); ?></div>
-                <div class="pwt-meta-chip"><strong><?php esc_html_e('Advance Due', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html('INR ' . number_format_i18n((float) $context['advance_amount'], 0)); ?></div>
-                <div class="pwt-meta-chip"><strong><?php esc_html_e('Status', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html(\PWT\Payments\PaymentManager::statusLabel((string) $context['status'])); ?></div>
+                <div class="pwt-meta-chip"><strong><?php esc_html_e('Guest', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($context['name']); ?></div>
+                <div class="pwt-meta-chip"><strong><?php esc_html_e('Package', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($context['package_name']); ?></div>
+                <div class="pwt-meta-chip"><strong><?php esc_html_e('Travel Date', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($context['travel_date']); ?></div>
+                <div class="pwt-meta-chip"><strong><?php esc_html_e('Advance Due', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html('INR ' . number_format_i18n((float) $context['advance_amount'], 0)); ?></div>
+                <div class="pwt-meta-chip"><strong><?php esc_html_e('Status', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html(\PWT\Payments\PaymentManager::statusLabel((string) $context['status'])); ?></div>
             </div>
             <?php if ($context['upi_id']) : ?>
-                <p><strong><?php esc_html_e('UPI ID', 'panna-wild-tour'); ?>:</strong> <?php echo esc_html($context['upi_id']); ?></p>
+                <p><strong><?php esc_html_e('UPI ID', 'wildtours-plugin'); ?>:</strong> <?php echo esc_html($context['upi_id']); ?></p>
             <?php endif; ?>
             <?php if ($context['instructions']) : ?>
                 <div><?php echo wp_kses_post(wpautop($context['instructions'])); ?></div>
@@ -322,7 +322,7 @@ class Shortcodes
                     <input type="hidden" name="payment_token" value="<?php echo esc_attr($token); ?>">
                     <div class="pwt-form-grid">
                         <label>
-                            <span><?php esc_html_e('Payment Method', 'panna-wild-tour'); ?></span>
+                            <span><?php esc_html_e('Payment Method', 'wildtours-plugin'); ?></span>
                             <select name="payment_method">
                                 <?php foreach (($context['allowed_methods'] ?? ['upi', 'bank_transfer', 'cash']) as $methodSlug) : ?>
                                     <option value="<?php echo esc_attr((string) $methodSlug); ?>"><?php echo esc_html($methodLabels[$methodSlug] ?? ucfirst((string) $methodSlug)); ?></option>
@@ -330,11 +330,11 @@ class Shortcodes
                             </select>
                         </label>
                         <label>
-                            <span><?php esc_html_e('Payment Reference / UTR *', 'panna-wild-tour'); ?></span>
+                            <span><?php esc_html_e('Payment Reference / UTR *', 'wildtours-plugin'); ?></span>
                             <input type="text" name="payment_reference" required>
                         </label>
                     </div>
-                    <button type="submit" class="pwt-btn"><?php esc_html_e('Submit Payment Reference', 'panna-wild-tour'); ?></button>
+                    <button type="submit" class="pwt-btn"><?php esc_html_e('Submit Payment Reference', 'wildtours-plugin'); ?></button>
                 </form>
             <?php endif; ?>
         </section>
@@ -350,21 +350,21 @@ class Shortcodes
         $subtitle = $settings['hero_subtitle'] ?? '';
 
         if (!$title) {
-            $title = __('Your Gateway to Panna Wild Tours', 'panna-wild-tour');
+            $title = __('Your Gateway to Panna Wild Tours', 'wildtours-plugin');
         }
 
         if (!$subtitle) {
-            $subtitle = __('Book tiger safaris, curated packages, and local experiences with one trusted team.', 'panna-wild-tour');
+            $subtitle = __('Book tiger safaris, curated packages, and local experiences with one trusted team.', 'wildtours-plugin');
         }
 
         ob_start();
         ?>
         <section class="pwt-hero">
             <div class="pwt-hero-inner">
-                <p class="pwt-kicker"><?php esc_html_e('Panna Tiger Reserve', 'panna-wild-tour'); ?></p>
+                <p class="pwt-kicker"><?php esc_html_e('Panna Tiger Reserve', 'wildtours-plugin'); ?></p>
                 <h1><?php echo esc_html($title); ?></h1>
                 <p><?php echo esc_html($subtitle); ?></p>
-                <a class="pwt-btn" href="#pwt-booking"><?php esc_html_e('Start Booking', 'panna-wild-tour'); ?></a>
+                <a class="pwt-btn" href="#pwt-booking"><?php esc_html_e('Start Booking', 'wildtours-plugin'); ?></a>
             </div>
         </section>
         <?php
@@ -378,26 +378,26 @@ class Shortcodes
         ?>
         <section class="pwt-section">
             <header class="pwt-section-header">
-                <h2><?php esc_html_e('The Services We Offer', 'panna-wild-tour'); ?></h2>
-                <p><?php esc_html_e('Complete travel support from planning to checkout, designed for smooth wildlife holidays in and around Panna.', 'panna-wild-tour'); ?></p>
+                <h2><?php esc_html_e('The Services We Offer', 'wildtours-plugin'); ?></h2>
+                <p><?php esc_html_e('Complete travel support from planning to checkout, designed for smooth wildlife holidays in and around Panna.', 'wildtours-plugin'); ?></p>
             </header>
             <div class="pwt-cards-grid">
                 <article class="pwt-card">
                     <div class="pwt-card-body">
-                        <h3><?php esc_html_e('Safari Planning Concierge', 'panna-wild-tour'); ?></h3>
-                        <p><?php esc_html_e('Permit guidance, gate/slot planning, and personalized itinerary coordination for first-time and repeat travelers.', 'panna-wild-tour'); ?></p>
+                        <h3><?php esc_html_e('Safari Planning Concierge', 'wildtours-plugin'); ?></h3>
+                        <p><?php esc_html_e('Permit guidance, gate/slot planning, and personalized itinerary coordination for first-time and repeat travelers.', 'wildtours-plugin'); ?></p>
                     </div>
                 </article>
                 <article class="pwt-card">
                     <div class="pwt-card-body">
-                        <h3><?php esc_html_e('Stay and Transfer Support', 'panna-wild-tour'); ?></h3>
-                        <p><?php esc_html_e('Verified resorts, station/airport pickup, and on-ground coordination for stress-free travel days.', 'panna-wild-tour'); ?></p>
+                        <h3><?php esc_html_e('Stay and Transfer Support', 'wildtours-plugin'); ?></h3>
+                        <p><?php esc_html_e('Verified resorts, station/airport pickup, and on-ground coordination for stress-free travel days.', 'wildtours-plugin'); ?></p>
                     </div>
                 </article>
                 <article class="pwt-card">
                     <div class="pwt-card-body">
-                        <h3><?php esc_html_e('Custom Local Experiences', 'panna-wild-tour'); ?></h3>
-                        <p><?php esc_html_e('Tailored add-ons such as waterfall trails, riverside visits, and family-friendly local explorations.', 'panna-wild-tour'); ?></p>
+                        <h3><?php esc_html_e('Custom Local Experiences', 'wildtours-plugin'); ?></h3>
+                        <p><?php esc_html_e('Tailored add-ons such as waterfall trails, riverside visits, and family-friendly local explorations.', 'wildtours-plugin'); ?></p>
                     </div>
                 </article>
             </div>
@@ -433,7 +433,7 @@ class Shortcodes
                                     <p class="pwt-tag"><?php echo esc_html((string) $meta); ?></p>
                                 <?php endif; ?>
                                 <p><?php echo esc_html(wp_trim_words(get_the_excerpt() ?: get_the_content(null, false), 20)); ?></p>
-                                <a class="pwt-text-link" href="<?php echo esc_url(get_permalink()); ?>"><?php esc_html_e('View details', 'panna-wild-tour'); ?></a>
+                                <a class="pwt-text-link" href="<?php echo esc_url(get_permalink()); ?>"><?php esc_html_e('View details', 'wildtours-plugin'); ?></a>
                             </div>
                         </article>
                         <?php
@@ -441,7 +441,7 @@ class Shortcodes
                     wp_reset_postdata();
                 } else {
                     ?>
-                    <p><?php esc_html_e('No published items found yet. Add and publish content from PWT Dashboard or Quick Content Forms to show this section.', 'panna-wild-tour'); ?></p>
+                    <p><?php esc_html_e('No published items found yet. Add and publish content from PWT Dashboard or Quick Content Forms to show this section.', 'wildtours-plugin'); ?></p>
                     <?php
                 }
                 ?>

@@ -3,11 +3,11 @@
 defined('ABSPATH') || exit;
 
 $postTypes = [
-	'pwt_package' => __('Packages', 'panna-wild-tour'),
-	'pwt_safari' => __('Safaris', 'panna-wild-tour'),
-	'pwt_destination' => __('Destinations', 'panna-wild-tour'),
-	'pwt_booking' => __('Bookings', 'panna-wild-tour'),
-	'pwt_review' => __('Reviews', 'panna-wild-tour'),
+	'pwt_package' => __('Packages', 'wildtours-plugin'),
+	'pwt_safari' => __('Safaris', 'wildtours-plugin'),
+	'pwt_destination' => __('Destinations', 'wildtours-plugin'),
+	'pwt_booking' => __('Bookings', 'wildtours-plugin'),
+	'pwt_review' => __('Reviews', 'wildtours-plugin'),
 ];
 
 $counts = [];
@@ -123,13 +123,13 @@ $conversionRate = $totalBookings > 0 ? round(($confirmedBookings / $totalBooking
 
 </table>
 
-<h2><?php esc_html_e('Content Inventory', 'panna-wild-tour'); ?></h2>
+<h2><?php esc_html_e('Content Inventory', 'wildtours-plugin'); ?></h2>
 
 <table class="widefat striped">
 	<thead>
 		<tr>
-			<th><?php esc_html_e('Module', 'panna-wild-tour'); ?></th>
-			<th><?php esc_html_e('Published Count', 'panna-wild-tour'); ?></th>
+			<th><?php esc_html_e('Module', 'wildtours-plugin'); ?></th>
+			<th><?php esc_html_e('Published Count', 'wildtours-plugin'); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -142,13 +142,13 @@ $conversionRate = $totalBookings > 0 ? round(($confirmedBookings / $totalBooking
 	</tbody>
 </table>
 
-<h2><?php esc_html_e('Payment Funnel', 'panna-wild-tour'); ?></h2>
+<h2><?php esc_html_e('Payment Funnel', 'wildtours-plugin'); ?></h2>
 
 <table class="widefat striped">
 	<thead>
 		<tr>
-			<th><?php esc_html_e('Status', 'panna-wild-tour'); ?></th>
-			<th><?php esc_html_e('Count', 'panna-wild-tour'); ?></th>
+			<th><?php esc_html_e('Status', 'wildtours-plugin'); ?></th>
+			<th><?php esc_html_e('Count', 'wildtours-plugin'); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -161,26 +161,26 @@ $conversionRate = $totalBookings > 0 ? round(($confirmedBookings / $totalBooking
 	</tbody>
 </table>
 
-<h2><?php esc_html_e('Popular Packages by Bookings', 'panna-wild-tour'); ?></h2>
+<h2><?php esc_html_e('Popular Packages by Bookings', 'wildtours-plugin'); ?></h2>
 
 <table class="widefat striped">
 	<thead>
 		<tr>
-			<th><?php esc_html_e('Package', 'panna-wild-tour'); ?></th>
-			<th><?php esc_html_e('Bookings', 'panna-wild-tour'); ?></th>
+			<th><?php esc_html_e('Package', 'wildtours-plugin'); ?></th>
+			<th><?php esc_html_e('Bookings', 'wildtours-plugin'); ?></th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php if (!empty($topPackages)) : ?>
 			<?php foreach ($topPackages as $packageId => $count) : ?>
 				<tr>
-					<td><?php echo esc_html(get_the_title((int) $packageId) ?: __('(untitled)', 'panna-wild-tour')); ?></td>
+					<td><?php echo esc_html(get_the_title((int) $packageId) ?: __('(untitled)', 'wildtours-plugin')); ?></td>
 					<td><?php echo esc_html((string) $count); ?></td>
 				</tr>
 			<?php endforeach; ?>
 		<?php else : ?>
 			<tr>
-				<td colspan="2"><?php esc_html_e('No booking data available yet.', 'panna-wild-tour'); ?></td>
+				<td colspan="2"><?php esc_html_e('No booking data available yet.', 'wildtours-plugin'); ?></td>
 			</tr>
 		<?php endif; ?>
 	</tbody>

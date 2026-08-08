@@ -58,7 +58,7 @@ abstract class FieldGroup implements FieldGroupInterface
                 _doing_it_wrong(
                     static::class,
                     sprintf(
-                        __('Missing required field group key: %s', 'panna-wild-tour'),
+                        __('Missing required field group key: %s', 'wildtours-plugin'),
                         $key
                     ),
                     defined('PWT_VERSION') ? PWT_VERSION : '1.0.0'

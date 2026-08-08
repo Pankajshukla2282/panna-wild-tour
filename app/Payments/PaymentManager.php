@@ -137,15 +137,15 @@ class PaymentManager
     public static function statusLabel(string $status): string
     {
         $labels = [
-            'pending_payment' => __('Pending Payment', 'panna-wild-tour'),
-            'verification_pending' => __('Verification Pending', 'panna-wild-tour'),
-            'partial_paid' => __('Advance Received', 'panna-wild-tour'),
-            'paid' => __('Paid in Full', 'panna-wild-tour'),
-            'failed' => __('Failed', 'panna-wild-tour'),
-            'cancelled' => __('Cancelled', 'panna-wild-tour'),
+            'pending_payment' => __('Pending Payment', 'wildtours-plugin'),
+            'verification_pending' => __('Verification Pending', 'wildtours-plugin'),
+            'partial_paid' => __('Advance Received', 'wildtours-plugin'),
+            'paid' => __('Paid in Full', 'wildtours-plugin'),
+            'failed' => __('Failed', 'wildtours-plugin'),
+            'cancelled' => __('Cancelled', 'wildtours-plugin'),
         ];
 
-        return $labels[$status] ?? __('Pending Payment', 'panna-wild-tour');
+        return $labels[$status] ?? __('Pending Payment', 'wildtours-plugin');
     }
 
     public static function canTransitionStatus(string $from, string $to): bool

@@ -127,7 +127,7 @@ class FluentContentIntake
 
         return sprintf(
             /* translators: %s: post type */
-            __('New %s Intake', 'panna-wild-tour'),
+            __('New %s Intake', 'wildtours-plugin'),
             $postType
         ) . ' ' . gmdate('Y-m-d H:i');
     }

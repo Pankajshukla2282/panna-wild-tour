@@ -59,7 +59,7 @@ final class BookingService
         return [
             'success' => true,
             'booking_id' => $bookingId,
-            'message' => __('Booking submitted successfully.', 'panna-wild-tour'),
+            'message' => __('Booking submitted successfully.', 'wildtours-plugin'),
         ];
     }
 }

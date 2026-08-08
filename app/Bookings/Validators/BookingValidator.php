@@ -29,7 +29,7 @@ final class BookingValidator
 
             return [
                 'success' => false,
-                'message' => __('Please enter your name.', 'panna-wild-tour'),
+                'message' => __('Please enter your name.', 'wildtours-plugin'),
             ];
         }
 
@@ -37,7 +37,7 @@ final class BookingValidator
 
             return [
                 'success' => false,
-                'message' => __('Please enter a valid email address.', 'panna-wild-tour'),
+                'message' => __('Please enter a valid email address.', 'wildtours-plugin'),
             ];
         }
 
@@ -45,7 +45,7 @@ final class BookingValidator
 
             return [
                 'success' => false,
-                'message' => __('Phone number is required.', 'panna-wild-tour'),
+                'message' => __('Phone number is required.', 'wildtours-plugin'),
             ];
         }
 

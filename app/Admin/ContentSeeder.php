@@ -33,7 +33,7 @@ final class ContentSeeder
     public function handle(): void
     {
         if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('You are not allowed to perform this action.', 'panna-wild-tour'));
+            wp_die(esc_html__('You are not allowed to perform this action.', 'wildtours-plugin'));
         }
 
         check_admin_referer('pwt_seed_starter_content');

@@ -3,7 +3,7 @@
 defined('ABSPATH') || exit;
 
 if (!current_user_can('manage_options')) {
-    wp_die(esc_html__('You are not allowed to access this page.', 'panna-wild-tour'));
+    wp_die(esc_html__('You are not allowed to access this page.', 'wildtours-plugin'));
 }
 
 $notice = '';
@@ -25,7 +25,7 @@ if (($_POST['action'] ?? '') === 'pwt_quick_create_content') {
     ];
 
     if (!in_array($postType, $allowedTypes, true)) {
-        $error = __('Invalid content type selected.', 'panna-wild-tour');
+        $error = __('Invalid content type selected.', 'wildtours-plugin');
     } else {
         $title = sanitize_text_field($_POST['title'] ?? '');
         $slug = sanitize_title($_POST['slug'] ?? '');
@@ -35,7 +35,7 @@ if (($_POST['action'] ?? '') === 'pwt_quick_create_content') {
         $status = in_array($status, ['draft', 'publish'], true) ? $status : 'draft';
 
         if ($title === '') {
-            $error = __('Title is required.', 'panna-wild-tour');
+            $error = __('Title is required.', 'wildtours-plugin');
         } else {
             $postId = wp_insert_post([
                 'post_type' => $postType,
@@ -47,7 +47,7 @@ if (($_POST['action'] ?? '') === 'pwt_quick_create_content') {
             ], true);
 
             if (is_wp_error($postId)) {
-                $error = __('Unable to create content. Please try again.', 'panna-wild-tour');
+                $error = __('Unable to create content. Please try again.', 'wildtours-plugin');
             } else {
                 $metaFields = [
                     'regular_price',
@@ -97,7 +97,7 @@ if (($_POST['action'] ?? '') === 'pwt_quick_create_content') {
 
                 $notice = sprintf(
                     /* translators: 1: content type, 2: post ID */
-                    __('Content created successfully (%1$s, ID %2$d).', 'panna-wild-tour'),
+                    __('Content created successfully (%1$s, ID %2$d).', 'wildtours-plugin'),
                     esc_html($postType),
                     (int) $postId
                 );
@@ -128,8 +128,8 @@ $latestMedia = get_posts([
 ]);
 ?>
 <div class="wrap">
-    <h1><?php esc_html_e('Quick Content Forms', 'panna-wild-tour'); ?></h1>
-    <p><?php esc_html_e('Create destinations, packages, safaris, resorts, vehicles, FAQs, testimonials, and reviews without opening the block editor.', 'panna-wild-tour'); ?></p>
+    <h1><?php esc_html_e('Quick Content Forms', 'wildtours-plugin'); ?></h1>
+    <p><?php esc_html_e('Create destinations, packages, safaris, resorts, vehicles, FAQs, testimonials, and reviews without opening the block editor.', 'wildtours-plugin'); ?></p>
 
     <?php if ($notice) : ?>
         <div class="notice notice-success"><p><?php echo esc_html($notice); ?></p></div>
@@ -146,7 +146,7 @@ $latestMedia = get_posts([
                 echo esc_html(
                     sprintf(
                         /* translators: 1: terms created, 2: posts created */
-                        __('Starter content import completed. New terms: %1$d, new posts: %2$d.', 'panna-wild-tour'),
+                        __('Starter content import completed. New terms: %1$d, new posts: %2$d.', 'wildtours-plugin'),
                         $seedTerms,
                         $seedPosts
                     )
@@ -158,8 +158,8 @@ $latestMedia = get_posts([
                 echo esc_html(
                     sprintf(
                         /* translators: 1: profile name, 2: featured image assignments */
-                        __('Profile: %1$s. Featured images assigned: %2$d.', 'panna-wild-tour'),
-                        $seedProfile === 'full' ? __('Full', 'panna-wild-tour') : __('Basic', 'panna-wild-tour'),
+                        __('Profile: %1$s. Featured images assigned: %2$d.', 'wildtours-plugin'),
+                        $seedProfile === 'full' ? __('Full', 'wildtours-plugin') : __('Basic', 'wildtours-plugin'),
                         $seedMedia
                     )
                 );
@@ -169,41 +169,41 @@ $latestMedia = get_posts([
     <?php endif; ?>
 
     <div class="card" style="max-width: 920px; margin-top: 20px; padding: 14px 18px;">
-        <h2 style="margin-top: 0;"><?php esc_html_e('Starter Content Import', 'panna-wild-tour'); ?></h2>
-        <p><?php esc_html_e('Generate launch-ready baseline content. Existing posts with matching titles are skipped so you can run this safely multiple times.', 'panna-wild-tour'); ?></p>
+        <h2 style="margin-top: 0;"><?php esc_html_e('Starter Content Import', 'wildtours-plugin'); ?></h2>
+        <p><?php esc_html_e('Generate launch-ready baseline content. Existing posts with matching titles are skipped so you can run this safely multiple times.', 'wildtours-plugin'); ?></p>
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <?php wp_nonce_field('pwt_seed_starter_content'); ?>
             <input type="hidden" name="action" value="pwt_seed_starter_content">
 
             <p>
-                <label for="pwt_seed_profile"><strong><?php esc_html_e('Import Profile', 'panna-wild-tour'); ?></strong></label><br>
+                <label for="pwt_seed_profile"><strong><?php esc_html_e('Import Profile', 'wildtours-plugin'); ?></strong></label><br>
                 <select id="pwt_seed_profile" name="seed_profile">
-                    <option value="basic"><?php esc_html_e('Basic (essential launch content)', 'panna-wild-tour'); ?></option>
-                    <option value="full"><?php esc_html_e('Full (includes resort, vehicle, review)', 'panna-wild-tour'); ?></option>
+                    <option value="basic"><?php esc_html_e('Basic (essential launch content)', 'wildtours-plugin'); ?></option>
+                    <option value="full"><?php esc_html_e('Full (includes resort, vehicle, review)', 'wildtours-plugin'); ?></option>
                 </select>
             </p>
 
-            <p><strong><?php esc_html_e('Include Content Types', 'panna-wild-tour'); ?></strong></p>
+            <p><strong><?php esc_html_e('Include Content Types', 'wildtours-plugin'); ?></strong></p>
             <p>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_destination" checked> <?php esc_html_e('Destinations', 'panna-wild-tour'); ?></label><br>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_safari" checked> <?php esc_html_e('Safaris', 'panna-wild-tour'); ?></label><br>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_package" checked> <?php esc_html_e('Packages', 'panna-wild-tour'); ?></label><br>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_faq" checked> <?php esc_html_e('FAQs', 'panna-wild-tour'); ?></label><br>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_testimonial" checked> <?php esc_html_e('Testimonials', 'panna-wild-tour'); ?></label><br>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_review" checked> <?php esc_html_e('Reviews', 'panna-wild-tour'); ?></label><br>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_resort" checked> <?php esc_html_e('Resorts', 'panna-wild-tour'); ?></label><br>
-                <label><input type="checkbox" name="seed_types[]" value="pwt_vehicle" checked> <?php esc_html_e('Vehicles', 'panna-wild-tour'); ?></label>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_destination" checked> <?php esc_html_e('Destinations', 'wildtours-plugin'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_safari" checked> <?php esc_html_e('Safaris', 'wildtours-plugin'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_package" checked> <?php esc_html_e('Packages', 'wildtours-plugin'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_faq" checked> <?php esc_html_e('FAQs', 'wildtours-plugin'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_testimonial" checked> <?php esc_html_e('Testimonials', 'wildtours-plugin'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_review" checked> <?php esc_html_e('Reviews', 'wildtours-plugin'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_resort" checked> <?php esc_html_e('Resorts', 'wildtours-plugin'); ?></label><br>
+                <label><input type="checkbox" name="seed_types[]" value="pwt_vehicle" checked> <?php esc_html_e('Vehicles', 'wildtours-plugin'); ?></label>
             </p>
 
             <p>
-                <label for="pwt_seed_featured_media"><strong><?php esc_html_e('Featured Media ID (optional)', 'panna-wild-tour'); ?></strong></label><br>
+                <label for="pwt_seed_featured_media"><strong><?php esc_html_e('Featured Media ID (optional)', 'wildtours-plugin'); ?></strong></label><br>
                 <input id="pwt_seed_featured_media" class="regular-text" type="number" min="0" name="seed_featured_media" placeholder="0">
             </p>
             <p>
-                <label><input type="checkbox" name="seed_use_latest_media" value="1"> <?php esc_html_e('If no ID is provided, use latest uploaded image as featured image', 'panna-wild-tour'); ?></label>
+                <label><input type="checkbox" name="seed_use_latest_media" value="1"> <?php esc_html_e('If no ID is provided, use latest uploaded image as featured image', 'wildtours-plugin'); ?></label>
             </p>
 
-            <?php submit_button(__('Import Starter Content', 'panna-wild-tour'), 'secondary', 'submit', false); ?>
+            <?php submit_button(__('Import Starter Content', 'wildtours-plugin'), 'secondary', 'submit', false); ?>
         </form>
     </div>
 
@@ -213,7 +213,7 @@ $latestMedia = get_posts([
 
         <table class="form-table" role="presentation">
             <tr>
-                <th scope="row"><label for="pwt_post_type"><?php esc_html_e('Content Type', 'panna-wild-tour'); ?></label></th>
+                <th scope="row"><label for="pwt_post_type"><?php esc_html_e('Content Type', 'wildtours-plugin'); ?></label></th>
                 <td>
                     <select id="pwt_post_type" name="post_type" required>
                         <option value="pwt_destination">Destination</option>
@@ -228,23 +228,23 @@ $latestMedia = get_posts([
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="pwt_title"><?php esc_html_e('Title', 'panna-wild-tour'); ?></label></th>
+                <th scope="row"><label for="pwt_title"><?php esc_html_e('Title', 'wildtours-plugin'); ?></label></th>
                 <td><input id="pwt_title" class="regular-text" type="text" name="title" required></td>
             </tr>
             <tr>
-                <th scope="row"><label for="pwt_slug"><?php esc_html_e('Slug', 'panna-wild-tour'); ?></label></th>
+                <th scope="row"><label for="pwt_slug"><?php esc_html_e('Slug', 'wildtours-plugin'); ?></label></th>
                 <td><input id="pwt_slug" class="regular-text" type="text" name="slug" placeholder="auto-if-empty"></td>
             </tr>
             <tr>
-                <th scope="row"><label for="pwt_excerpt"><?php esc_html_e('Excerpt', 'panna-wild-tour'); ?></label></th>
+                <th scope="row"><label for="pwt_excerpt"><?php esc_html_e('Excerpt', 'wildtours-plugin'); ?></label></th>
                 <td><textarea id="pwt_excerpt" class="large-text" rows="2" name="excerpt"></textarea></td>
             </tr>
             <tr>
-                <th scope="row"><label for="pwt_content"><?php esc_html_e('Content', 'panna-wild-tour'); ?></label></th>
+                <th scope="row"><label for="pwt_content"><?php esc_html_e('Content', 'wildtours-plugin'); ?></label></th>
                 <td><textarea id="pwt_content" class="large-text" rows="8" name="content"></textarea></td>
             </tr>
             <tr>
-                <th scope="row"><label for="pwt_status"><?php esc_html_e('Status', 'panna-wild-tour'); ?></label></th>
+                <th scope="row"><label for="pwt_status"><?php esc_html_e('Status', 'wildtours-plugin'); ?></label></th>
                 <td>
                     <select id="pwt_status" name="status">
                         <option value="draft">Draft</option>
@@ -254,7 +254,7 @@ $latestMedia = get_posts([
             </tr>
         </table>
 
-        <h2><?php esc_html_e('Optional Meta Fields', 'panna-wild-tour'); ?></h2>
+        <h2><?php esc_html_e('Optional Meta Fields', 'wildtours-plugin'); ?></h2>
         <table class="form-table" role="presentation">
             <tr><th scope="row">Regular Price</th><td><input class="regular-text" type="text" name="regular_price"></td></tr>
             <tr><th scope="row">Offer Price</th><td><input class="regular-text" type="text" name="offer_price"></td></tr>
@@ -277,12 +277,12 @@ $latestMedia = get_posts([
                 <th scope="row">Featured Media ID</th>
                 <td>
                     <input class="regular-text" type="number" min="0" name="featured_media">
-                    <p class="description"><?php esc_html_e('Select from recent media IDs listed below.', 'panna-wild-tour'); ?></p>
+                    <p class="description"><?php esc_html_e('Select from recent media IDs listed below.', 'wildtours-plugin'); ?></p>
                 </td>
             </tr>
         </table>
 
-        <h2><?php esc_html_e('Taxonomy IDs (comma separated)', 'panna-wild-tour'); ?></h2>
+        <h2><?php esc_html_e('Taxonomy IDs (comma separated)', 'wildtours-plugin'); ?></h2>
         <table class="form-table" role="presentation">
             <tr><th scope="row">Seasons</th><td><input class="regular-text" type="text" name="pwt_season" placeholder="45,46"></td></tr>
             <tr><th scope="row">Activities</th><td><input class="regular-text" type="text" name="pwt_activity" placeholder="49,50"></td></tr>
@@ -292,16 +292,16 @@ $latestMedia = get_posts([
             <tr><th scope="row">Destination Categories</th><td><input class="regular-text" type="text" name="pwt_destination_category" placeholder="51,52"></td></tr>
         </table>
 
-        <?php submit_button(__('Create Content', 'panna-wild-tour')); ?>
+        <?php submit_button(__('Create Content', 'wildtours-plugin')); ?>
     </form>
 
-    <h2><?php esc_html_e('Reference: Taxonomy Term IDs', 'panna-wild-tour'); ?></h2>
+    <h2><?php esc_html_e('Reference: Taxonomy Term IDs', 'wildtours-plugin'); ?></h2>
     <?php foreach ($taxonomyTerms as $taxonomy => $terms) : ?>
         <h3><?php echo esc_html($taxonomy); ?></h3>
         <p>
             <?php
             if (is_wp_error($terms) || empty($terms)) {
-                esc_html_e('No terms found.', 'panna-wild-tour');
+                esc_html_e('No terms found.', 'wildtours-plugin');
             } else {
                 $items = [];
                 foreach ($terms as $term) {
@@ -313,11 +313,11 @@ $latestMedia = get_posts([
         </p>
     <?php endforeach; ?>
 
-    <h2><?php esc_html_e('Reference: Recent Media', 'panna-wild-tour'); ?></h2>
+    <h2><?php esc_html_e('Reference: Recent Media', 'wildtours-plugin'); ?></h2>
     <p>
         <?php
         if (empty($latestMedia)) {
-            esc_html_e('No media found yet.', 'panna-wild-tour');
+            esc_html_e('No media found yet.', 'wildtours-plugin');
         } else {
             $mediaItems = [];
             foreach ($latestMedia as $media) {
@@ -328,11 +328,11 @@ $latestMedia = get_posts([
         ?>
     </p>
 
-    <h2><?php esc_html_e('Fluent Form Field Keys for Auto Drafts', 'panna-wild-tour'); ?></h2>
-    <p><?php esc_html_e('Use these exact field names in Fluent Forms to auto-create draft content:', 'panna-wild-tour'); ?></p>
-    <p><strong><?php esc_html_e('Common', 'panna-wild-tour'); ?>:</strong> title, slug, excerpt, content, featured_media</p>
-    <p><strong><?php esc_html_e('Package Meta', 'panna-wild-tour'); ?>:</strong> regular_price, offer_price, duration, peak_multiplier, shoulder_multiplier, monsoon_multiplier</p>
-    <p><strong><?php esc_html_e('Review Meta', 'panna-wild-tour'); ?>:</strong> rating, guest_city, verified</p>
-    <p><strong><?php esc_html_e('Taxonomy IDs', 'panna-wild-tour'); ?>:</strong> pwt_season, pwt_activity, pwt_safari_zone, pwt_vehicle_type, pwt_package_category, pwt_destination_category</p>
-    <p><strong><?php esc_html_e('FAQ/Testimonial/Review selector', 'panna-wild-tour'); ?>:</strong> pwt_content_type = pwt_faq | pwt_testimonial | pwt_review</p>
+    <h2><?php esc_html_e('Fluent Form Field Keys for Auto Drafts', 'wildtours-plugin'); ?></h2>
+    <p><?php esc_html_e('Use these exact field names in Fluent Forms to auto-create draft content:', 'wildtours-plugin'); ?></p>
+    <p><strong><?php esc_html_e('Common', 'wildtours-plugin'); ?>:</strong> title, slug, excerpt, content, featured_media</p>
+    <p><strong><?php esc_html_e('Package Meta', 'wildtours-plugin'); ?>:</strong> regular_price, offer_price, duration, peak_multiplier, shoulder_multiplier, monsoon_multiplier</p>
+    <p><strong><?php esc_html_e('Review Meta', 'wildtours-plugin'); ?>:</strong> rating, guest_city, verified</p>
+    <p><strong><?php esc_html_e('Taxonomy IDs', 'wildtours-plugin'); ?>:</strong> pwt_season, pwt_activity, pwt_safari_zone, pwt_vehicle_type, pwt_package_category, pwt_destination_category</p>
+    <p><strong><?php esc_html_e('FAQ/Testimonial/Review selector', 'wildtours-plugin'); ?>:</strong> pwt_content_type = pwt_faq | pwt_testimonial | pwt_review</p>
 </div>

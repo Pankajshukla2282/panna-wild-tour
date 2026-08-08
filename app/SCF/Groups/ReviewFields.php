@@ -20,7 +20,7 @@ final class ReviewFields extends FieldGroup
     {
         $this->addGroup([
             'key' => 'group_pwt_review_details',
-            'title' => __('Review Details', 'panna-wild-tour'),
+            'title' => __('Review Details', 'wildtours-plugin'),
 
             'location' => [[[
                 'param' => 'post_type',

@@ -38,10 +38,10 @@ final class EmailService
 
             $booking['email'],
 
-            __('Booking Confirmation', 'panna-wild-tour'),
+            __('Booking Confirmation', 'wildtours-plugin'),
 
             sprintf(
-                __('Thank you %s. Your booking request has been received.', 'panna-wild-tour'),
+                __('Thank you %s. Your booking request has been received.', 'wildtours-plugin'),
                 $booking['name']
             )
         );

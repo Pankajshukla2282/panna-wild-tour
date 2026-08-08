@@ -16,8 +16,8 @@ class Menu
     public function menu(): void
     {
         add_menu_page(
-            __('Panna Wild Tour', 'panna-wild-tour'),
-            __('Panna Wild Tour', 'panna-wild-tour'),
+            __('Panna Wild Tour', 'wildtours-plugin'),
+            __('Panna Wild Tour', 'wildtours-plugin'),
             'manage_options',
             'pwt-dashboard',
             [$this, 'dashboard'],
@@ -27,8 +27,8 @@ class Menu
 
         add_submenu_page(
             'pwt-dashboard',
-            __('Dashboard', 'panna-wild-tour'),
-            __('Dashboard', 'panna-wild-tour'),
+            __('Dashboard', 'wildtours-plugin'),
+            __('Dashboard', 'wildtours-plugin'),
             'manage_options',
             'pwt-dashboard',
             [$this, 'dashboard']
@@ -36,8 +36,8 @@ class Menu
 
         add_submenu_page(
             'pwt-dashboard',
-            __('Settings', 'panna-wild-tour'),
-            __('Settings', 'panna-wild-tour'),
+            __('Settings', 'wildtours-plugin'),
+            __('Settings', 'wildtours-plugin'),
             'manage_options',
             'pwt-settings',
             [$this, 'settings']
@@ -45,8 +45,8 @@ class Menu
 
         add_submenu_page(
             'pwt-dashboard',
-            __('Content Forms', 'panna-wild-tour'),
-            __('Content Forms', 'panna-wild-tour'),
+            __('Content Forms', 'wildtours-plugin'),
+            __('Content Forms', 'wildtours-plugin'),
             'manage_options',
             'pwt-content-forms',
             [$this, 'contentForms']
